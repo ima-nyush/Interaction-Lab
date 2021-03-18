@@ -1,9 +1,9 @@
 # DYplayer
 This documentation is an improved version, made for IMA/B @ NYU Shanghai, based on the following two sources:
-> [DYPlayer Library](https://github.com/SnijderC/dyplayer).
-> [Arduino serial control DY-SV5W audio playback](https://www.programmersought.com/article/94405345077/)
+- [DYPlayer Library](https://github.com/SnijderC/dyplayer).
+- [Arduino serial control DY-SV5W audio playback](https://www.programmersought.com/article/94405345077/)
 
-## File Requirements
+## Sound File Requirements
 This MP3 module has requirements for the format of the files. We know that the following works well:
 - Format the micro SD card with FAT16 or FAT32 format
 - Make sure your files are in MP3 format in 44.1kHz
@@ -19,16 +19,19 @@ For use with Arduino, make sure that the DIP switches are in the following posit
 | `CON3`     | `High`     |
 
 You have to also connect the MP3 with your Arduino:
-| Pin      | Connect to                       |
-|:---------|:---------------------------------|
-| `V+`     | `5V`                             |
-| `V-`     | `GND`                            |
-| `IO0/TX` | `Arduino RX`                     |
-| `IO1/RX` | `Arduino TX`                     |
-| `SPK+`   | Speaker                          |
-| `SPK-`   | Speaker negative lead            |
+| Pin      | Connect to                          |
+|:---------|:------------------------------------|
+| `V+`     | `5V`                                |
+| `V-`     | `GND`                               |
+| `IO0/TX` | `Arduino RX - pin 10 in our example`|
+| `IO1/RX` | `Arduino TX - pin 11 in our example`|
+| `SPK+`   | `Speaker`                           |
+| `SPK-`   | `Speaker`                           |
 
 ## Library Installation
+Download and install the library at
+
+Download the [DYPlayer Libray](https://github.com/SnijderC/dyplayer/archive/master.zip) and unzip it into the libraries file of Arduino IDE by the path: ..\arduino-1.0.1\libraries. If having trouble, read the guide to Arduino library.
 
 ## Usage example
 ```cpp

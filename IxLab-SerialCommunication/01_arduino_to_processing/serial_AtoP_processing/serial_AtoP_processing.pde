@@ -24,7 +24,7 @@ void setup() {
 
 
 void draw() {
-  updateSerial();
+  getSerialData();
   printArray(sensorValues);
 
   // use the values like this!
@@ -58,7 +58,7 @@ void setupSerial() {
 
 
 
-void updateSerial() {
+void getSerialData() {
   while (myPort.available() > 0) {
     myString = myPort.readStringUntil( 10 ); // 10 = '\n'  Linefeed in ASCII
     if (myString != null) {

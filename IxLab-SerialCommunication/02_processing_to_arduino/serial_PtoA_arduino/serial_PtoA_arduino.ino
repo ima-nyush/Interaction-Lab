@@ -4,9 +4,6 @@
 /**
   This example is to send multiple values from Processing to Arduino.
   You can find the Processing example file in the same folder which works with this Arduino file.
-  Please note that the echo case (when char c is 'e' in the getSerialData function below)
-  checks if Arduino is receiving the correct bytes from the Processing sketch
-  by sending the values array back to the Processing sketch.
  **/
 
 #define NUM_OF_VALUES 3    /** YOU MUST CHANGE THIS ACCORDING TO YOUR PROJECT **/
@@ -86,20 +83,6 @@ void getSerialData() {
         //to clear out the values array for the next round of readings from Processing
         tempValue = 0;
         valueIndex = 0;
-        break;
-      //if the char c from Processing is character 'e'
-      //it is signalling for the Arduino to send Processing the elements saved in the values array
-      //this case is triggered and processed by the echoSerialData function in the Processing sketch
-      case 'e': // to echo
-        for (int i = 0; i < NUM_OF_VALUES; i++) {
-          Serial.print(values[i]);
-          if (i < NUM_OF_VALUES - 1) {
-            Serial.print(',');
-          }
-          else {
-            Serial.println();
-          }
-        }
         break;
     }
   }

@@ -44,7 +44,7 @@ void loop() {
         } else {
           digitalWrite(13, LOW);
         }
-      /*
+      */
   //end of example
 
 }

@@ -60,7 +60,7 @@ void loop() {
 
 //recieve serial data from Processing
 void getSerialData() {
-  if (Serial.available()) {
+  while (Serial.available()) {
     char c = Serial.read();
     //switch - case checks the value of the variable in the switch function
     //in this case, the char c, then runs one of the cases that fit the value of the variable

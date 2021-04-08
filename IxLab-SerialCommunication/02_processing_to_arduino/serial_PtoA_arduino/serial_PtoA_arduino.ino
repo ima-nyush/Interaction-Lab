@@ -44,7 +44,7 @@ void loop() {
         } else {
           digitalWrite(13, LOW);
         }
-      */
+      /*
   //end of example
 
 }
@@ -75,7 +75,7 @@ void getSerialData() {
         break;
       //if the char c from Processing is character 'n'
       //which signals that it is the end of data
-      case 'n':
+      case '\n':
         //save the tempValue
         //this will b the last element in the values array
         values[valueIndex] = tempValue;

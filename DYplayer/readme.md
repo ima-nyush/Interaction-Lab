@@ -3,7 +3,7 @@ This documentation is an improved version, made for IMA/B @ NYU Shanghai, based 
 - [DYPlayer Library](https://github.com/SnijderC/dyplayer).
 - [Arduino serial control DY-SV5W audio playback](https://www.programmersought.com/article/94405345077/)
 
-![Alt text](/DY-SV5W-withTable.jpg?raw=true "MP3 player model DY-5V5W")
+![Alt text](DYplayer/DY-SV5W-withTable.jpg?raw=true "MP3 player model DY-5V5W")
 
 ## DY-SV5W Features
 

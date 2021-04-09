@@ -1,7 +1,23 @@
-# DYplayer
+# MP3 Player Model DY-SV5W
 This documentation is an improved version, made for IMA/B @ NYU Shanghai, based on the following two sources:
 - [DYPlayer Library](https://github.com/SnijderC/dyplayer).
 - [Arduino serial control DY-SV5W audio playback](https://www.programmersought.com/article/94405345077/)
+
+![Alt text](/DY-SV5W-withTable.jpg?raw=true "MP3 player model DY-5V5W")
+
+## DY-SV5W Features
+
+DY-SV5W is a smart voice module with Integrated IO trigger, UART protocol control, One_line single-bus protocol control, standard MP3 and other 7 operating modes setting by DIP switch; Drive 4~8Ω, 3~5W speaker by a 5W class D audio amplifier on board；Support MP3、WAV decoding; Support TF card for maximum 32G downloading music files directly by micro USB connector.
+
+1、Supports MP3、WAV decoding。
+2、Supports sampling rate (KHz):8/11.025/12/16/22.05/24/32/44.1/48。
+3、24bit DAC output，support dynamic range 90dB，SNR 85dB。
+4、Supports FAT16/FAT32 file system，support TF card for maximum 32G。
+5、Drives 4~8Ω speaker by 5W class D amplifier chip on board。
+6、Play 65535 pieces of music by UART control protocol; Play, Pause, Selecting music, VOL+/- and so on can be controlled，the communication baud rate is 9600bps。
+7、Play 255 pieces of music by IO triggering;
+8、Play music by One_line control protocol，Play, Pause, Selecting music, VOL+/- and so on can be controlled。
+9、Switch 7 operating modes using DIP switch easily
 
 ## Sound File Requirements
 This MP3 module has requirements for the format of the files. We know that the following works well:
@@ -27,6 +43,8 @@ You have to also connect the MP3 with your Arduino:
 | `IO1/RX` | `Arduino TX - pin 11 in our example`|
 | `SPK+`   | `Speaker`                           |
 | `SPK-`   | `Speaker`                           |
+
+
 
 ## Library Installation
 Download and install the library at

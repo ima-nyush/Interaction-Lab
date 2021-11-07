@@ -1,5 +1,6 @@
 // IMA NYU Shanghai
 // Interaction Lab
+//This example is to send multiple values from Processing to Arduino and Arduino to Processing.
 
 #define NUM_OF_VALUES_FROM_PROCESSING 2    /** YOU MUST CHANGE THIS ACCORDING TO YOUR PROJECT **/
 

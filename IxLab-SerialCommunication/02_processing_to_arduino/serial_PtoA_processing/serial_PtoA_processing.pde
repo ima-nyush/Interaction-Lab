@@ -21,7 +21,6 @@ void setup() {
   setupSerial();
 }
 
-
 void draw() {
   background(0);
 

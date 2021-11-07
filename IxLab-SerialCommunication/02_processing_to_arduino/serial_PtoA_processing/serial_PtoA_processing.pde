@@ -1,19 +1,15 @@
 // IMA NYU Shanghai
 // Interaction Lab
 
-
 /**
  * This example is to send multiple values from Processing to Arduino.
  * You can find the arduino example file in the same folder which works with this Processing file.
- * Please note that the echoSerialData function asks Arduino to send the data saved in the values array
- * to check if it is receiving the correct bytes.
  **/
-
 
 import processing.serial.*;
 
-int NUM_OF_VALUES = 3;  /** YOU MUST CHANGE THIS ACCORDING TO YOUR PROJECT **/
-int values[] = new int[NUM_OF_VALUES]; /** this array stores values you might want to send to Arduino **/
+int NUM_OF_VALUES_FROM_PROCESSING = 3;  /** YOU MUST CHANGE THIS ACCORDING TO YOUR PROJECT **/
+int processing_values[] = new int[NUM_OF_VALUES_FROM_PROCESSING]; /** this array stores values you might want to send to Arduino **/
 
 Serial myPort;
 String myString;
@@ -34,12 +30,12 @@ void draw() {
   //for example:
   /*
     if (mousePressed) {
-      values[0] = 1;
+      processing_values[0] = 1;
     } else {
-      values[0] = 0;
+      processing_values[0] = 0;
     }
-    values[1] = mouseX;
-    values[2] = mouseY;
+    processing_values[1] = mouseX;
+    processing_values[2] = mouseY;
    */
   //end of example
 
@@ -68,10 +64,10 @@ void setupSerial() {
 
 void sendSerialData() {
   String data = "";
-  for (int i=0; i<values.length; i++) {
-    data += values[i];
+  for (int i=0; i<processing_values.length; i++) {
+    data += processing_values[i];
     //if i is less than the index number of the last element in the values array
-    if (i < values.length-1) {
+    if (i < processing_values.length-1) {
       data += ","; // add splitter character "," between each values element
     } 
     //if it is the last element in the values array

@@ -1,7 +1,6 @@
 // IMA NYU Shanghai
 // Interaction Lab
 
-
 import processing.serial.*;
 
 int NUM_OF_VALUES_FROM_PROCESSING = 2;  /** YOU MUST CHANGE THIS ACCORDING TO YOUR PROJECT **/
@@ -10,9 +9,8 @@ int NUM_OF_VALUES_FROM_ARDUINO = 2;  /** YOU MUST CHANGE THIS ACCORDING TO YOUR 
 Serial myPort;
 String myString;
 
-int values[]; /** this array stores values you might want to send to Arduino **/
+int processing_values[]; /** this array stores values you might want to send to Arduino **/
 int sensorValues[];      /** this array stores values from Arduino **/
-
 
 void setup() {
   size(500, 500);
@@ -22,6 +20,7 @@ void setup() {
 
 void draw() {
   background(0);
+  
   //receive the values from Arduino
   getSerialData();
 
@@ -40,11 +39,11 @@ void draw() {
        //change the code according to your project
        
        if (mousePressed) {
-       values[0] = 1;
+       processing_values[0] = 1;
        } else {
-       values[0] = 0;
+       processing_values[0] = 0;
        }
-       values[1] = int(map(mouseX, 0, width, 0, 255));
+       processing_values[1] = int(map(mouseX, 0, width, 0, 255));
        */
   //end of example
   
@@ -69,7 +68,7 @@ void setupSerial() {
   myString = myPort.readStringUntil( 10 );  // 10 = '\n'  Linefeed in ASCII
   myString = null;
 
-  values = new int[NUM_OF_VALUES_FROM_PROCESSING];
+  processing_values = new int[NUM_OF_VALUES_FROM_PROCESSING];
   sensorValues = new int[NUM_OF_VALUES_FROM_ARDUINO];
 }
 
@@ -90,10 +89,10 @@ void getSerialData() {
 
 void sendSerialData() {
   String data = "";
-  for (int i=0; i<values.length; i++) {
-    data += values[i];
+  for (int i=0; i<processing_values.length; i++) {
+    data += processing_values[i];
     //if i is less than the index number of the last element in the values array
-    if (i < values.length-1) {
+    if (i < processing_values.length-1) {
       data += ","; // add splitter character "," between each values element
     } 
     //if it is the last element in the values array

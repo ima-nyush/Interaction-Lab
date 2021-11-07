@@ -10,7 +10,7 @@
 import processing.serial.*;
 
 
-int NUM_OF_VALUES = 3;   /** YOU MUST CHANGE THIS ACCORDING TO YOUR PROJECT **/
+int NUM_OF_VALUES_FROM_ARDUINO = 3;   /** YOU MUST CHANGE THIS ACCORDING TO YOUR PROJECT **/
 int sensorValues[];      /** this array stores values from Arduino **/
 
 String myString = null;
@@ -21,7 +21,6 @@ void setup() {
   background(0);
   setupSerial();
 }
-
 
 void draw() {
   getSerialData();
@@ -34,8 +33,6 @@ void draw() {
 
   //
 }
-
-
 
 void setupSerial() {
   printArray(Serial.list());
@@ -53,17 +50,15 @@ void setupSerial() {
   myString = myPort.readStringUntil( 10 );  // 10 = '\n'  Linefeed in ASCII
   myString = null;
 
-  sensorValues = new int[NUM_OF_VALUES];
+  sensorValues = new int[NUM_OF_VALUES_FROM_ARDUINO];
 }
-
-
 
 void getSerialData() {
   while (myPort.available() > 0) {
     myString = myPort.readStringUntil( 10 ); // 10 = '\n'  Linefeed in ASCII
     if (myString != null) {
       String[] serialInArray = split(trim(myString), ",");
-      if (serialInArray.length == NUM_OF_VALUES) {
+      if (serialInArray.length == NUM_OF_VALUES_FROM_ARDUINO) {
         for (int i=0; i<serialInArray.length; i++) {
           sensorValues[i] = int(serialInArray[i]);
         }

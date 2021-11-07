@@ -1,5 +1,6 @@
 // IMA NYU Shanghai
 // Interaction Lab
+//This example is to send multiple values from Processing to Arduino and Arduino to Processing.
 
 import processing.serial.*;
 

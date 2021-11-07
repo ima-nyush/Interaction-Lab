@@ -8,7 +8,7 @@ int tempValue = 0;
 int valueIndex = 0;
 
 /* This is the array of values storing the data from Processing. */
-int values[NUM_OF_VALUES_FROM_PROCESSING];
+int processing_values[NUM_OF_VALUES_FROM_PROCESSING];
 
 void setup() {
   Serial.begin(9600);
@@ -25,19 +25,20 @@ void loop() {
 
   // to receive a value from Processing
   getSerialData();
+  
   // add your code here
   // use elements in the values array
   //and print values to send to Processing
 
   // this is an example:
   /*
-    //example of using received values
-    if (values[0] == 1) {
+    //example of using received values and turning on an LED
+    if (processing_values[0] == 1) {
     digitalWrite(13, HIGH);
     } else {
     digitalWrite(13, LOW);
     }
-    analogWrite(9, values[1]);
+    analogWrite(9, processing_values[1]);
     // too fast communication might cause some latency in Processing
     // this delay resolves the issue.
     delay(10);
@@ -58,7 +59,7 @@ void loop() {
   // end of example
 }
 
-//recieve serial data from Processing
+//receive serial data from Processing
 void getSerialData() {
   while (Serial.available()) {
     char c = Serial.read();
@@ -77,7 +78,7 @@ void getSerialData() {
       //if the char c from Processing is a comma
       //indicating that the following values of char c is for the next element in the values array
       case ',':
-        values[valueIndex] = tempValue;
+        processing_values[valueIndex] = tempValue;
         //reset tempValue value
         tempValue = 0;
         //increment valuesIndex by 1
@@ -88,7 +89,7 @@ void getSerialData() {
       case '\n':
         //save the tempValue
         //this will b the last element in the values array
-        values[valueIndex] = tempValue;
+        processing_values[valueIndex] = tempValue;
         //reset tempValue and valueIndex values
         //to clear out the values array for the next round of readings from Processing
         tempValue = 0;

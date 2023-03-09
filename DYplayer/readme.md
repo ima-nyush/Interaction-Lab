@@ -56,8 +56,8 @@ Download the [DYPlayer Libray](https://github.com/SnijderC/dyplayer/archive/mast
 
 
 #include <Arduino.h>
-#include "DYPlayerArduino.h"
 #include <SoftwareSerial.h>
+#include "DYPlayerArduino.h"
 
 SoftwareSerial SoftSerial(10, 11);  //RX and TX from Arduino
 DY::Player player(&SoftSerial);     //should connect them to io0 and io1

@@ -3,7 +3,7 @@ The ultrasonic distance sensor detects distance by sending an ultrasonic wave fr
 ## Hardware
 For this tutorial we will be using the Arduino Uno and Keyestudio SR01 Ultrasonic sensors that you can find in your kits.
 
-![Image of SR01](/Images/sr01.png)
+![Image of SR01](./Images/sr01.png)
 
 Here are some useful specifications on the ultrasonic sensor:
 | | |
@@ -17,7 +17,7 @@ Here are some useful specifications on the ultrasonic sensor:
 
 ### Circuit Setup
 
-![Image of Circuit Setup](/Images/sr01SetupDiagram.png)
+![Image of Circuit Setup](./Images/sr01SetupDiagram.png)
 
 ## Method 1: pulseIn()
 

@@ -119,7 +119,7 @@ void detectEcho(int ep, unsigned long to) {
 
 ## Method 3: NewPing Library by Tim Eckel
 
-The NewPing library was also developed in order to avoid the interruptions of Method 1. It operates similarly to Method 2, but being a library, also has some other features such as controlling ping intervals of sensors or controlling detection interval using Timer2 (Note: Using timer2 will disrupt PWM function and other libraries that also use it, such as the Tone Library).
+The NewPing library was also developed in order to avoid the interruptions of Method 1. It operates similarly to Method 2, but being a library, also has some other features such as controlling ping intervals of sensors or controlling detection interval using Timer2 (Note: Using timer2 will disrupt PWM function and other libraries that also use it, such as the Tone Library). This method also has the issue of data having some bounce to it.
 
 Below is the example code provided from the library to run a single ultrasonic sensor. Variables have been modified to match the circuit diagram above and the max range of the ultrasonic sensor in the kit.
 

@@ -3,8 +3,8 @@ int clkPin = 7;
 int dtPin = 6;
 int swPin = 5;
 
-int count;
-int dir;
+int count; //count from original position (0)
+int dir; //1 = clockwise 2 = counter-clockwise
 int button;
 int pollRate = 25000;  //in uS
 
@@ -35,12 +35,12 @@ void rotaryEncoder(int cp, int dp, int pr) {
   } else {
     button = 0;
   }
-
+  //give window of time(default 25ms) to register pulse
   while (micros() <= timeStarted + pr) {
     int clkState = digitalRead(cp);
     int dtState = digitalRead(dp);
     if (clkState == HIGH && clkState != clkStateOld) {  //rising
-      if (dtState == HIGH) {
+      if (dtState == LOW) {
         count++;
         dir = 1;
         Serial.println(count);

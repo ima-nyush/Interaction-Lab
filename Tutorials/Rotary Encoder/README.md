@@ -43,7 +43,6 @@ void rotaryEncoder(int cp, int dp, int pr) {
       if (dtState == LOW) {
         count++;
         dir = 1;
-        Serial.println(count);
         break;
       } else {
         count--;

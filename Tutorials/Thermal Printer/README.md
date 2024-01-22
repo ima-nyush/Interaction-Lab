@@ -30,6 +30,7 @@ SoftwareSerial ser(10, 11); //RX,TX pins
 
 void setup() {
   ser.begin(9600); //begin software serial
+  delay(1000); //1 second delay to prevent double printing
   ser.print("\x1B\x21\x08"); //format text to be bold
   ser.println("Hello World!");
   ser.println();

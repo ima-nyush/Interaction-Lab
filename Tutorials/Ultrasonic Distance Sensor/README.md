@@ -26,28 +26,41 @@ This method is what is most widely used when starting out. It relies on **delayM
 Below is some starting code, which will allow you to read the distance in centimeters.
 
 ```C++
-int pingPin = 6;
-int echoPin = 7;
+int triggerPin = 12;
+int echoPin = 11;
+int cm;
+int missedPulses = 0;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(6, OUTPUT);
-  pinMode(7, INPUT);
+  pinMode(triggerPin, OUTPUT);
+  pinMode(echoPin, INPUT);
 }
 
 void loop() {
-  //additional 2 microsecond delay to ensure pulse clarity
-  digitalWrite(pingPin, LOW);
+  // additional 2 microsecond delay to ensure pulse clarity
+  digitalWrite(triggerPin, LOW);
   delayMicroseconds(2);
-  digitalWrite(pingPin, HIGH);
+  digitalWrite(triggerPin, HIGH);
   delayMicroseconds(10);
-  digitalWrite(pingPin, LOW);
+  digitalWrite(triggerPin, LOW);
 
-  //pulseIn waits for signal to go from HIGH to LOW, default timeout is 1000000
-  unsigned long duration = pulseIn(echoPin, HIGH);
-  //since sound travels roughly 29cm per microsecond we divide by 29
-  //then again by 2 since the duration of the signal was equal to the sound traveling outward and back
-  int cm = duration / 29 / 2;
+  // pulseIn waits for echo to go from HIGH to LOW
+  long duration = pulseIn(echoPin, HIGH, 11600);
+
+  if (duration != 0) {
+    // echo received, convert time it took to centimeters
+    // sound travels 29cm per microsecond, back-and-forth
+    cm = duration / 29 / 2;
+    missedPulses = 0;
+  } else {
+    if (missedPulses < 5) {
+      missedPulses++;
+    } else {
+      cm = 0;
+    }
+  }
+
   Serial.println(cm);
 }
 ```

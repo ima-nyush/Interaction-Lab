@@ -35,11 +35,11 @@ void setup() {
 
 void loop() {
   //additional 2 microsecond delay to ensure pulse clarity
-  digitalWrite(pingPin, LOW);
+  digitalWrite(triggerPin, LOW);
   delayMicroseconds(2);
-  digitalWrite(pingPin, HIGH);
+  digitalWrite(triggerPin, HIGH);
   delayMicroseconds(10);
-  digitalWrite(pingPin, LOW);
+  digitalWrite(triggerPin, LOW);
 
   //pulseIn waits for signal to go from HIGH to LOW, timeout according to max range of sensor
   unsigned long duration = pulseIn(echoPin, HIGH, 17400);

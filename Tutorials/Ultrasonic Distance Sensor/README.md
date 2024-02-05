@@ -26,6 +26,7 @@ Below is some starting code, which will allow you to read the distance in centim
 ```C++
 int triggerPin = 6;
 int echoPin = 7;
+long distance;
 
 void setup() {
   Serial.begin(9600);
@@ -34,18 +35,20 @@ void setup() {
 }
 
 void loop() {
-  //additional 2 microsecond delay to ensure pulse clarity
+  // additional 2 microsecond delay to ensure pulse clarity
   digitalWrite(triggerPin, LOW);
   delayMicroseconds(2);
   digitalWrite(triggerPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(triggerPin, LOW);
 
-  //pulseIn waits for signal to go from HIGH to LOW, timeout according to max range of sensor
-  unsigned long duration = pulseIn(echoPin, HIGH, 17400);
-  //sound travels roughly 29cm per microsecond so we divide by 29, then by 2 since we recorded sound both going forth and back
-  unsigned long cm = duration / 29 / 2;
-  Serial.println(cm);
+  // pulseIn waits for signal to go from HIGH to LOW,
+  // timeout according to max range of sensor
+  long duration = pulseIn(echoPin, HIGH, 17400);
+  // sound travels roughly 29cm per microsecond so we divide by 29,
+  // then by 2 since we recorded sound both going forth and back
+  distance = duration / 29 / 2;
+  Serial.println(distance);
 }
 ```
 

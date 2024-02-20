@@ -3,7 +3,8 @@
 A Solenoid is a coil that when energized, produces a controlled magnetic field down through its center. By placing a magnetic armature inside that field, the armature can move in or out of the coil. Solenoids are found in paintball guns, pinball machines, printers, valves, and even automobiles.
 
 ## Hardware
-(solenoid pic)
+![Image of Solenoid](./Images/solenoid.jpg)
+
 Here are some common solenoid specifications:
 
 <u>Throw</u>- This refers to the length of the armature moving in and out of the solenoid.
@@ -27,9 +28,9 @@ In this tutorial, we are going to switch a small 5v Solenoid on and off in inter
 * 1 x 220 Ω Resistor
 * 1 x [Diode](https://core-electronics.com.au/1n4001-diode-10-pack.html)
 * 1 x [Power Transistor](https://core-electronics.com.au/tip120-power-darlington-transistors-3-pack.html)
-* [**1 x 5v Solenoid**](https://core-electronics.com.au/5v-solenoid.html)
+* **1 x** [**5v Solenoid**](https://core-electronics.com.au/5v-solenoid.html)
 
- (image of diagram )
+ ![Image of Solenoid Diagram](./Images/solenoid-diagram.jpg)
 
 1. Connect 5v Power and Ground from your Arduino to your power and ground rails on your breadboard
 2. Connect your solenoid to separate lines on your breadboard, one to the 5v power from step 2, the other needs to connect to the collector (middle) of the transistor.

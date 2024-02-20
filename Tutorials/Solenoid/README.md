@@ -3,7 +3,7 @@
 A Solenoid is a coil that when energized, produces a controlled magnetic field down through its center. By placing a magnetic armature inside that field, the armature can move in or out of the coil. Solenoids are found in paintball guns, pinball machines, printers, valves, and even automobiles.
 
 ## Hardware
-![Image of Solenoid](./Images/solenoid.jpg)
+![Image of Solenoid](./Images/solenoid.jpeg)
 
 Here are some common solenoid specifications:
 

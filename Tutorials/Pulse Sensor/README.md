@@ -1,5 +1,5 @@
 # Pulse Sensor
-The pulse sensor is used to detect the user's pulse by shining a light through the skin to see changes in bloodflow. Because of how it operates, it can only be used in areas where light can easily penetrate, such as the finger or earlobe.
+The pulse sensor is used to detect the user's pulse by shining a light through the skin to see changes in bloodflow. Because of how it operates, it can only be used in areas where light can easily penetrate, such as the finger or earlobe. To use it, simply press the sensor against your skin.
 
 ## Circuit Diagram
 ![setup image](./images/setup.png)

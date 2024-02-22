@@ -32,8 +32,8 @@ In this tutorial, we are going to switch a small 5v Solenoid on and off in inter
 
  ![Image of Solenoid Diagram](./Images/solenoid-diagram.jpg)
 
-1. Connect 5v Power and Ground from your Arduino to your power and ground rails on your breadboard
-2. Connect your solenoid to separate lines on your breadboard, one to the 5v power from step 2, the other needs to connect to the collector (middle) of the transistor.
+1. Connect 5v Power and Ground from your Arduino to your power and ground rails on your breadboard.
+2. Connect your solenoid to separate lines on your breadboard, one to the 5v power from step 1, the other needs to connect to the collector (middle) of the transistor.
 3. Connect your Diode between the two solenoid cables, this will prevent current discharging back through the circuit when the solenoid coil discharges.
 4. Insert your power transistor on three separate lines of your breadboard, with the flat side facing toward the outside. Ensure the collector's leg is connected to the solenoid and diode line.
 5. Connect a 220-ohm Resistor from the base leg of the transistor to a separate line

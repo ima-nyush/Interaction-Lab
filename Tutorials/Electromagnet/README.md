@@ -4,6 +4,7 @@ An **Electromagnet** is constructed by winding a coil around a conductive core
 
 ## Hardware
 ![Image of Electromagent](./Images/electromagnetimage.jpeg)
+
 Here are the main specs of an electromagnet that you should be looking for carefully:
 
 - **Rated Voltage**: usually it’s **5-12v**

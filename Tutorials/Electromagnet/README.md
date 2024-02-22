@@ -11,9 +11,9 @@ Here are the main specs of an electromagnet that you should be looking for caref
 - **Rated Current**: this is the current drawn by the Electromagnet when you apply the rated voltage
 - **Lifting Force**: this represents the pulling force of the electromagnet when it’s activated, it can be anything from 1kg to 100kg or even more. Our Electromagnets have a lifting force of 3kg.
 
-_***NOTE: this Electromagnet module has a noticeable **Residual Magnetism** effect which makes it tricky to work with, especially when you’re planning to use it to life (small light-weight objects). What you’re going to notice is that even when you turn it OFF, the small objects will still be sticking to the turned OFF Electromagnet. It’ll require a tiny external force to pull them apart, unless the object is relatively heavy, only then gravity will do the job._
+_***NOTE: this Electromagnet module has a noticeable **Residual Magnetism** effect which makes it tricky to work with, especially when you’re planning to use it to life (small light-weight objects). What you’re going to notice is that even when you turn it OFF, the small objects will still be sticking to the turned OFF Electromagnet. It’ll require a tiny external force to pull them apart, unless the object is relatively heavy, only then gravity will do the job.***_
 
-##Circuit Diagram
+## Circuit Diagram
 Similar to the Solenoid tutorial,  in this tutorial, we are going to switch an electromagnet on and off in intervals of 1 second. You will need the following components for this tutorial:
 
 - 1 x Arduino Uno

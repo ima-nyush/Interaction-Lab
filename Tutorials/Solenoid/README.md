@@ -7,9 +7,9 @@ A Solenoid is a coil that when energized, produces a controlled magnetic field d
 
 Here are some common solenoid specifications:
 
-<u>Throw</u>- This refers to the length of the armature moving in and out of the solenoid.
+<u>Throw</u> – This refers to the length of the armature moving in and out of the solenoid.
 
-<u>Mounting options</u> – Most solenoids have mounting holes in the case so that your armature can actually push and/or pull its load. Otherwise, the solenoid would likely push itself around instead of the load!
+<u>Mounting options</u>  Most solenoids have mounting holes in the case so that your armature can actually push and/or pull its load. Otherwise, the solenoid would likely push itself around instead of the load!
 
 <u>Duty cycle</u> – This is expressed as a percentage of time the solenoid is switched on for. For example, if a solenoid is energised for 30 seconds before switching off for 30 seconds, its duty cycle is 50%.
 

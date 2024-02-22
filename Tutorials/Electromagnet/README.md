@@ -2,8 +2,8 @@
 
 An **Electromagnet** is constructed by winding a coil around a conductive core object and applying a voltage across the terminals of the coil. This will form a magnetic field around the structure and make it act just like a magnet that can be used for so many applications (buzzers, relays, picking up stuff, coil guns, valves, MRI machines, and much more).
 
-##Hardware
-
+## Hardware
+![Image of Electromagent](./Images/electromagnetimage.jpeg)
 Here are the main specs of an electromagnet that you should be looking for carefully:
 
 - **Rated Voltage**: usually it’s **5-12v**
@@ -23,7 +23,7 @@ Similar to the Solenoid tutorial,  in this tutorial, we are going to switch an e
 - 1 x [Diode](https://core-electronics.com.au/1n4001-diode-10-pack.html)
 - 1 x [Power Transistor](https://core-electronics.com.au/tip120-power-darlington-transistors-3-pack.html)
 - **1 x Electromagnet**
-  [image]
+![Electromagent Circuit Diagram](./Images/electromagnet-schematic.png)
 
 1. Connect the 12v Power Supply to the power and ground rails on your breadboard. Connect the ground rail to your Arduino. 
 2. Connect your electromagnet to separate lines on your breadboard, one to the power from step 2, the other needs to connect to the collector (middle) of the transistor.

@@ -23,7 +23,7 @@ Similar to the Solenoid tutorial,  in this tutorial, we are going to switch an e
 - 1 x 220 Ω Resistor
 - 1 x [Diode](https://core-electronics.com.au/1n4001-diode-10-pack.html)
 - 1 x [Power Transistor](https://core-electronics.com.au/tip120-power-darlington-transistors-3-pack.html)
-- **1 x Electromagnet**
+- **1** x [**Electromagnet**](https://www.electroschematics.com/lifting-electromagnet/)
   
 ![Electromagent Circuit Diagram](./Images/electromagnet-schematic.png)
 

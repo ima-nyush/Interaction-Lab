@@ -35,6 +35,8 @@ Similar to the Solenoid tutorial,  in this tutorial, we are going to switch an e
 6. Connect the emitter leg to the ground rail.
 7. Connect the other side of the resistor from step 6 to digital pin 9, that's our control pin.
 
+## Code
+
 ```C++
 int electroMagnetPin = 9;                    //This is the output pin on the Arduino uno
 

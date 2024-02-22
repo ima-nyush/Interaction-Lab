@@ -24,6 +24,7 @@ Similar to the Solenoid tutorial,  in this tutorial, we are going to switch an e
 - 1 x [Diode](https://core-electronics.com.au/1n4001-diode-10-pack.html)
 - 1 x [Power Transistor](https://core-electronics.com.au/tip120-power-darlington-transistors-3-pack.html)
 - **1 x Electromagnet**
+  
 ![Electromagent Circuit Diagram](./Images/electromagnet-schematic.png)
 
 1. Connect the 12v Power Supply to the power and ground rails on your breadboard. Connect the ground rail to your Arduino. 

@@ -34,15 +34,19 @@ void loop() {
 ```
 The Pulse Sensor Playground library contains additional functions that may be useful for your projects. Take a look at their documentation or example sketches to see them.
 
+
 ## Additional Information
-The Pulse Sensor Playground library is currently incompatible with the Servo library. If you see an error similar to the one below, it is due to this incompatibility.
+
+The Pulse Sensor Playground library is currently incompatible with the Servo library. If you see an error similar to the one below, it is due to this incompatibility. ([Issue](https://github.com/WorldFamousElectronics/PulseSensorPlayground/issues/192))
+
 ```C++
 ...\libraries\Servo\avr\Servo.cpp.o (symbol from plugin): In function `ServoCount':
 (.text+0x0): multiple definition of `__vector_11'
-...\libraries\PulseSensor_Playground\PulseSensorPlayground.cpp.o (symbol from plugin):(.text+0x0): first defined here
-collect2.exe: error: ld returned 1 exit status
 
-exit status 1
+```
 
-Compilation error: exit status 1
+As a workaround, in your Arduino folder, open `libraries/PulseSensor_Playground/src/PulseSensorPlayground.cpp` and add the following new line at line 18:
+
+```C++
+#define Servo_h
 ```

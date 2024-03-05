@@ -37,16 +37,4 @@ The Pulse Sensor Playground library contains additional functions that may be us
 
 ## Additional Information
 
-The Pulse Sensor Playground library is currently incompatible with the Servo library. If you see an error similar to the one below, it is due to this incompatibility. ([Issue](https://github.com/WorldFamousElectronics/PulseSensorPlayground/issues/192))
-
-```C++
-...\libraries\Servo\avr\Servo.cpp.o (symbol from plugin): In function `ServoCount':
-(.text+0x0): multiple definition of `__vector_11'
-
-```
-
-As a workaround, in your Arduino folder, open `libraries/PulseSensor_Playground/src/PulseSensorPlayground.cpp` and add the following new line at line 18:
-
-```C++
-#define Servo_h
-```
+If you plan to use the pulse sensor with servos, be sure to install/update to `v2.1.1` and above of the Pulse Sensor Playground library. Some older versions may be incompatible with the Servo library on AVR boards (Uno, Mega, etc).

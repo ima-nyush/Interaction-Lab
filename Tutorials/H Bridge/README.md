@@ -63,25 +63,25 @@ void directionControl() {
 	// For PWM maximum possible values are 0 to 255
 	analogWrite(enA, 255);
 
-	// Turn on motor A & B
+	// Turn on motor A
 	digitalWrite(in1, HIGH);
 	digitalWrite(in2, LOW);
 	
 	delay(2000);
 
-	// Now change motor directions
+	// Now change motor direction
 	digitalWrite(in1, LOW);
 	digitalWrite(in2, HIGH);
 
 	delay(2000);
 
-	// Turn off motors
+	// Turn off motor
 	digitalWrite(in1, LOW);
 	digitalWrite(in2, LOW);
 	
 }
 
-// This function lets you control speed of the motors
+// This function lets you control speed of the motor
 void speedControl() {
 	// Turn on motors
 	digitalWrite(in1, LOW);
@@ -102,7 +102,7 @@ void speedControl() {
 		delay(20);
 	}
 
-	// Now turn off motors
+	// Now turn off motor
 	digitalWrite(in1, LOW);
 	digitalWrite(in2, LOW);
 	

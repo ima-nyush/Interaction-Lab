@@ -21,11 +21,27 @@ In this tutorial, we are going to switch a small 5v Solenoid on and off in inter
 * 4 x Jumper Wires (M/F)
 * 1 x MPU 6050
 
- ![Image of MPU6050 Diagram]
+ ![Image of MPU6050 Diagram](./Images/MPU6050_circuit.jpeg)
 
-1. Connect ..
+Wiring:
+MPU6050 to Arduino
+GND -> GND
+VCC -> 5V
+SDA -> SDA
+SCL -> SCL
+
 
 ## Code
+Beefore running the code, you will need to install the following libraries to make it work. In your library manager search for:
+- Adafruit MPU6050 by adafruit
+- Mouse by Arduino
+  
+Additionally you will need to do a manual installation of the library I2Cdevlib by jrwoberg.You can install it by following these instructions:
+Download the i2cdevlib project: https://github.com/jrowberg/i2cdevlib/archive/master.zip (8.2k)
+Unzip the downloaded file.
+Move the "Arduino/I2Cdev" subfolder inside the Arduino library folder. Usually in this location: Documents -> Arduino -> Libraries
+
+
 Upload the code to your board and see how the mouse on the screen moves according to the position of the IMU. 
 Code reference from edwardthe found a hackster.io
 

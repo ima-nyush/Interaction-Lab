@@ -2,9 +2,11 @@
 
 In this tutorial, we will learn how to wire the Load Cell and HX711 Amplifier, which work as a digital scale. 
 
-![Image of scale](./Images/)
+![Image of scale](./Images/scale.jpeg)
 
 ## Load Cell
+
+![Image of scale](./Images/load-cell.jpeg)
 
 A load cell converts a force into an electrical signal that can be measured. The electrical signal changes proportionally to the force applied. There are different types of load cells: strain gauges, pneumatic, and hydraulic. This tutorial uses strain gauge load cells. 
 
@@ -29,13 +31,15 @@ Because the changes in strain when weighting objects are so small, we need an am
 
 ## HX711 Amplifier
 
+![Image of scale](./Images/hx711-amplifier.webp)
+
 The HX711 amplifier is a breakout board that allows you to easily read load cells to measure weight. You wire the load cell wires on one side, and the microcontroller on the other side. The HX711 communicates with the microcontroller using two-wire interface (Clock and Data).
 
 ## Wiring Load Cell and HX711 Amplifier to the Arduino
 
 The HX711 amplifier communicates via two-wire interface. You can connect it to any digital pins of your Arduino board. We’re connecting the data pin (DT) to Pin 2 and the clock pin (CLK) to Pin 3.
 
-![circuit diagram](./Images/)
+![circuit diagram](./Images/scale-circuit-diagram.webp)
 
 ## Installing the HX711 Library
 There are several different libraries to get measurements from a load cell using the HX711 amplifier. We’ll use the [HX711 library by bodge](https://github.com/bogde/HX711). It is compatible with the ESP32, ESP8266, and Arduino.

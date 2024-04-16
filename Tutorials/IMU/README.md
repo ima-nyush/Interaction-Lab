@@ -1,13 +1,13 @@
 # IMU
 
 In this tutorial we will learn how to use the MPU6050 paired with an Arduino Leonardo to control the mouse cursor from your laptop.
-The MPU6050 is an IMU device that stands for Inertial Measurement Unit. It is a six-axis motion tracking device that calculates a three-axis accelerometer and three-axis gyroscope data.
+The MPU6050 is an IMU device (Inertial Measurement Unit) that calculates three-axis accelerometer and three-axis gyroscope data.
 
 
 ## Hardware
 ![Image the MPU6050](./Images/MPU-6050.png)
 
-Here are some common MPU  specifications:
+Here are some common IMU specifications:
 
 <u>Gyroscope </u> – The gyroscope measures rotational velocity or rate of change of the angular position over time, along the X, Y and Z axis. 
 
@@ -15,7 +15,6 @@ Here are some common MPU  specifications:
 
 
 ### Circuit Setup
-In this tutorial, we are going to switch a small 5v Solenoid on and off in intervals of 1 second. You will need the following components for this tutorial:
 
 * 1 x Arduino Leonardo
 * 4 x Jumper Wires (M/F)
@@ -23,12 +22,13 @@ In this tutorial, we are going to switch a small 5v Solenoid on and off in inter
 
  ![Image of MPU6050 Diagram](./Images/MPU6050_circuit.jpeg)
 
-Wiring:
-MPU6050 to Arduino
-GND -> GND
-VCC -> 5V
-SDA -> SDA
-SCL -> SCL
+
+|MPU6050    | Arduino        | 
+| ------------- |:-------------:| 
+| GND     | GND | 
+| VCC     | 5V     |   
+| SDA |  SDA   | 
+| SCL | SCL      | 
 
 
 ## Code

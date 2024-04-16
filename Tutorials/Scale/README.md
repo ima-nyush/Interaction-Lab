@@ -1,6 +1,6 @@
 ## Digital Scale (Load Cell and HX711 Amplifier)
 
-In this tutorial, we will learn how to wire and calibrate the Load Cell and HX711 Amplifier, which work as a digital scale. 
+In this tutorial, we will learn how to wire the Load Cell and HX711 Amplifier, which work as a digital scale. 
 
 ![Image of scale](./Images/)
 
@@ -94,10 +94,12 @@ void loop() {
 }
 ```
 
-Calculate your calibration factor using the formula:
+Calculate your calibration factor using the formula: 
 ```
 calibration factor = (reading)/(known weight)
 ```
+
+Add the calibration factor like this: scale.set_scale(INSERT YOUR CALIBRATION FACTOR);
 
 
 

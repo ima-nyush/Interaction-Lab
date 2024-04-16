@@ -14,7 +14,7 @@ Strain gauge load cells are composed of a metal bar with attached strain gauges 
 
 Usually, load cells have four strain gauges hooked up in a Wheatstone bridge (as shown below) that allow us to get accurate resistance measurements. For a more detailed explanation of how strain gauges work, [read this article](https://www.allaboutcircuits.com/textbook/direct-current/chpt-9/strain-gauges/).
 
-![Image of whatstone bridge](./Images/)
+![Image of whatstone bridge](./Images/wheatstone.webp)
 
 ### Applications
 Applications

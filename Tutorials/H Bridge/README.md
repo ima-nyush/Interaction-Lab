@@ -4,7 +4,7 @@ In this tutorial, we will learn how to control the rotation direction of a DC mo
 
 The L298N is a dual H-Bridge motor driver which allows speed and direction control of two DC motors at the same time. The module can drive DC motors that have voltages between 5 and 35V, with a peak current up to 2A. In this example, we will control one 5V DC motor.
 
-![![Image of L298N](./Images/L298N-Motor.webp)]
+![Image of L298N](./Images/L298N-Motor.webp)
 
 ## Technical Specifications
 |  |  |
@@ -16,7 +16,7 @@ The L298N is a dual H-Bridge motor driver which allows speed and direction contr
 
 **Voltage Drop of L298N**
 
-![![Image of Labeled L298N](./Images/voltage-drop.png)]
+![Image of Labeled L298N](./Images/voltage-drop.png)
 
 The L298N has a voltage drop of approximately 2V. This is because internal switching transistors have a voltage drop of approximately 1V when forward biased and because an H-Bridge requires the current to pass through two transistors, the total voltage drop is 2V.
 
@@ -31,7 +31,7 @@ For this example, we will still use a 5V power supply, even though the 5V DC wil
 ## Hardware
 Let’s take a closer look at the pinout of the L298N module and explain how it works. 
 
-![![Image of Labeled L298N](./Images/L298N-Module-Pinout.jpeg)]
+![Image of Labeled L298N](./Images/L298N-Module-Pinout.jpeg)
 
 The L298N module has 11 pins that allow it to communicate with the outside world. It has two screw terminal blocks for the motor A and B, and another screw terminal block for the Ground pin, the VCC for the motor, and a 5V pin which can either be an input or output.
 
@@ -40,7 +40,8 @@ Next are the logic control inputs. The Enable A and Enable B pins are used to en
 Next, the Input 1 and Input 2 pins are used for controlling the rotation direction of motor A, and inputs 3 and 4 for motor B. Using these pins we control the switches of the H-Bridge inside the L298N IC. If input 1 is LOW and input 2 is HIGH the motor will move forward, and vice versa, if input 1 is HIGH and input 2 is LOW the motor will move backward. In case both inputs are the same, either LOW or HIGH the motor will stop. The same applies for the inputs 3 and 4 and the motor B.
 
 ## Wiring an L298N Motor Driver Module to an Arduino
-![![Image of Labeled L298N](./Images/circuit-diagram.png)]
+![Image of Labeled L298N](./Images/circuit-diagram.png)
+
 
 ## Arduino Example Code
 The sketch below will show you how to control the speed and spinning direction of a DC motor using the L298N Motor Driver and can serve as the basis for more practical experiments and projects.

@@ -1,6 +1,6 @@
 # Infrared Distance Sensor
 
-![Image of L298N](./Images/IR-proximity-sensor)
+![Image of Infrared Distance Sensor](./Images/IR-proximity-sensor.jpeg)
 
 In this tutorial we will use the Sharp IR sensor (GP2Y0A41SK0F) to measure distance from an object.
 
@@ -12,7 +12,7 @@ In this tutorial we will try to measure the distance from an object (4~30cm).
 
 ## Circuit Diagram
 
-![Image of L298N](./Images/IR-proximity-diagram)
+![Image of circuit diagram](./Images/IR-proximity-diagram.jpeg)
 
 ## Arduino Code
 

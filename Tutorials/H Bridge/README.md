@@ -7,12 +7,15 @@ The L298N is a dual H-Bridge motor driver which allows speed and direction contr
 ![Image of L298N](./Images/L298N-Motor.webp)
 
 ## Technical Specifications
+
+
 | | |
+| - | - |
 | Motor output voltage | 5V – 35V |
 | Motor output voltage (Recommended) | 7V – 12V |
 | Logic input voltage | 5V – 7V |
 | Continuous current per channel | 2A |
-| Max Power Dissipation | 25W |
+| Max Power Dissipation | 25W|
 
 **Voltage Drop of L298N**
 

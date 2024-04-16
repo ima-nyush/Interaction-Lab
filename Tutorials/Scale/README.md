@@ -104,6 +104,7 @@ calibration factor = (reading)/(known weight)
 ```
 
 Add the calibration factor like this: scale.set_scale(INSERT YOUR CALIBRATION FACTOR);
+After this setup, the scale should be ready to get accurate readings in your desired unit.
 
 
 

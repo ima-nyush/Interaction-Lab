@@ -35,8 +35,7 @@ Here are some common IMU specifications:
 Beefore running the code, you will need to install the following libraries to make it work. In your library manager search for:
 - Adafruit MPU6050 by adafruit
 - Mouse by Arduino
-  
-Additionally you will need to do a manual installation of the library I2Cdevlib by jrwoberg. You can install it by following these instructions:
+- Additionally you will need to do a manual installation of the library I2Cdevlib by jrwoberg. You can install it by following these instructions:
    Download the i2cdevlib project: https://github.com/jrowberg/i2cdevlib/archive/master.zip (8.2k)  
    Unzip the downloaded file.  
    Move the "Arduino/I2Cdev" subfolder inside the Arduino library folder. Usually in this location: Documents -> Arduino -> Libraries  

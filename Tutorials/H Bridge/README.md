@@ -41,7 +41,11 @@ Next, the Input 1 and Input 2 pins are used for controlling the rotation directi
 
 ## Wiring an L298N Motor Driver Module to an Arduino
 ![Image of Labeled L298N](./Images/circuit-diagram.png)
+Let’s begin by connecting the motor power supply. In our experiment, we are using one DC gearbox motor, also called “TT” motor, which are often found in two-wheel-drive robots. They are rated for 3 to 12V. Today we will connect an external 5V power source to the VCC terminal. Because L298N has a voltage drop of about 2V, the motors will receive 3V and spin at a slightly lower RPM. 
 
+Now connect the L298N module’s Input and Enable pins (IN1, IN2, ENA,) to the Arduino digital output pins (6, 7, 9). Note that Arduino output pin 9 is PWM-enabled.
+
+Finally, wire your DC motor to terminal A (OUT1 and OUT2). You can swap out your motor’s connections. There is technically no right or wrong way.
 
 ## Arduino Example Code
 The sketch below will show you how to control the speed and spinning direction of a DC motor using the L298N Motor Driver and can serve as the basis for more practical experiments and projects.
@@ -51,7 +55,7 @@ The sketch moves the motor in one direction for one revolution, then in the oppo
 ```C++
 // Motor A connections
 int enA = 9;
-int in1 = 8;
+int in1 = 6;
 int in2 = 7;
 
 

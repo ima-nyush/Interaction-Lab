@@ -26,7 +26,7 @@ Scroll down now and find **More Bluetooth Options** under **Related Settings**, 
 
 ![bt setup 2](./images/btsetup2.png)
 
-You'll see the results above when switching over to the **COM Ports** tab. Note the port number of the **incoming connection HC05**, you will need this in your code. You may ignore the **outgoing connection HC05'SPP Dev'**. Now you are ready to move onto coding.
+You'll see the results above when switching over to the **COM Ports** tab. Note the port number of the **incoming connection HC-05**, you will need this in your code. You may ignore the **outgoing connection HC-05'SPP Dev'**. Now you are ready to move onto coding.
 
 ### MacOS
 

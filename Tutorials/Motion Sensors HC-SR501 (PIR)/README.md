@@ -43,5 +43,8 @@ angle range, the module using a circular lens also makes the probe surrounded in
 both directions sensing range, sensitivity, still need to try to install the above requirements.
 
 ## Build the Circuit 
+![circuit](./images/circult.png)
+
+
 
 

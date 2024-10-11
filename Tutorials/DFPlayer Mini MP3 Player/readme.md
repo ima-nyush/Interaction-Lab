@@ -13,9 +13,13 @@ The DFPlayer Mini MP3 Player For Arduino is a small and low cost MP3 module with
 ## Build the Circuit 
 ![circuit](./images/speakerpic.png)
 
+## Copy your mp3 into you micro SD card
+
+
 ## Arduino Code
 We've created an Arduino library for DFPlayer Mini to simplify the method for you to make it work. Connect the hardware as the picture above shown and play with the sample code. You can search in your Arduino software or you can download the latest library here: [DFRobotDFPlayerMini](https://github.com/DFRobot/DFRobotDFPlayerMini/tree/master).
-![lib](./images/mp3pic.jpg)
+
+![lib](./images/mp3lib.png)
 
 ### Sample code "GetStarted", switching to next song every 3 seconds
 ```C++

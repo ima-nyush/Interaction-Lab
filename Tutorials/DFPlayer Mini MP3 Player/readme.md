@@ -4,75 +4,367 @@ This tutorial is made for NYUSH IMA community based on [DFROBOT DOCUMENTATION](h
 ![mp3player](./images/mp3-player.jpg)
 
 ## Introduction
-The Passive Infrared(PIR) Motion Sensor is a sensor that detects motion. It is commonly used in security systems and automatic lighting systems. The sensor has two slots that detect infrared radiation. When an object, such as a person, passes in front of the sensor, it detects a change in the amount of infrared radiation and triggers an output signal.
+The DFPlayer Mini MP3 Player For Arduino is a small and low cost MP3 module with an simplified output directly to the speaker. The module can be used as a stand alone module with attached battery, speaker and push buttons or used in combination with microcontrollers such as Arduino.
+
 ## Hardware
-![MotionSensorStructure](./images/motionsensor.png)
-
-### Distance Adjustment
-Turning the knob of the distance adjustment potentiometer clockwise, the range of sensing distance increases, and the maximum sensing distance range is about 0-7 meters. If turn it anticlockwise, the range of sensing distance is reduced, and the minimum sensing distance range is about 0-3 meters.
-
-### Delay adjustment
-Rotate the knob of the delay adjustment potentiometer clockwise, you can also see the sensing delay increasing. The maximum of the sensing delay can reach up to 300s. On the contrary, if rotate it anticlockwise, you can shorten the delay with a minimum of 5s.
-
-### Two Trigger Modes
-
-Choosing different modes by using the jumper cap.
-
-H: Repeatable trigger mode, after sensing the human body, the module outputs high level. During the subsequent delay period, if somebody enters the sensing range,the output will keep being the high level.
-
-L: Single trigger mode, outputs high level when it senses the human body. After the delay, the output will change from high level into low level automatically.
-
-## Instruction for Use
-
-1. Sensor module is powered up after a minute, in this initialization time intervals during this module will output 0-3 times, a minute later enters
-the standby state;
-
-2. Should try to avoid the lights and other sources of interference close direct module surface of the lens, in order to avoid the introduction of
-interference signal malfunction; environment should avoid the wind flow, the wind will cause interference on the sensor;
-
-3. Sensor module with dual probe, the probe window is rectangular, dual (A B) in both ends of the longitudinal direction;
-
-* so when the human body from left to right or right to left through the infrared spectrum to reach dual time, distance difference, the greater
-the difference, the more sensitive the sensor;
-
-* when the human body from the front to the probe or from top to bottom or from bottom to top on the direction traveled, double detects
-changes in the distance of less than infrared spectroscopy, no difference value the sensor insensitive or does not work;
-
-4. The dual direction of sensor should be installed parallel as far as possible in inline with human movement. In order to increase the sensor
-angle range, the module using a circular lens also makes the probe surrounded induction, but the left and right sides still up and down in
-both directions sensing range, sensitivity, still need to try to install the above requirements.
+![pinspic](./images/pinpic.png)
+![pinsinfo](./images/pininfo.png)
 
 ## Build the Circuit 
-![circuit](./images/circult.png)
+![circuit](./images/speakerpic.png)
 
 ## Arduino Code
+We've created an Arduino library for DFPlayer Mini to simplify the method for you to make it work. Connect the hardware as the picture above shown and play with the sample code. You can search in your Arduino software or you can download the latest library here: [DFRobotDFPlayerMini](https://github.com/DFRobot/DFRobotDFPlayerMini/tree/master).
+![lib](./images/mp3pic.jpg)
 
+### Sample code "GetStarted", switching to next song every 3 seconds
 ```C++
-/*
-  This code reads the digital input from a PIR (passive infrared) motion sensor connected to pin 2. 
-  If the digital input is HIGH, it prints the message "Somebody here!" to the serial monitor.
-  
-  Board: Arduino Uno
-  Component: PIR (passive infrared) motion sensor(HC-SR501)
-*/
+/***************************************************
+DFPlayer - A Mini MP3 Player For Arduino
+ <https://www.dfrobot.com/product-1121.html>
 
-// Define the pin number for the PIR sensor
-const int pirPin = 2;
+ ***************************************************
+ This example shows the basic function of library for DFPlayer.
 
-// Declare and initialize the state variable
-int state = 0;
+ Created 2016-12-07
+ By [Angelo qiao](Angelo.qiao@dfrobot.com)
 
-void setup() {
-  pinMode(pirPin, INPUT);  // Set the PIR pin as an input
-  Serial.begin(9600);      // Start serial communication with a baud rate of 9600
+ GNU Lesser General Public License.
+ See <http://www.gnu.org/licenses/> for details.
+ All above must be included in any redistribution
+ ****************************************************/
+
+/***********Notice and Trouble shooting***************
+ 1.Connection and Diagram can be found here
+ <https://www.dfrobot.com/wiki/index.php/DFPlayer_Mini_SKU:DFR0299#Connection_Diagram>
+ 2.This code is tested on Arduino Uno, Leonardo, Mega boards.
+ ****************************************************/
+
+#include "Arduino.h"
+#include "DFRobotDFPlayerMini.h"
+
+#if (defined(ARDUINO_AVR_UNO) || defined(ESP8266))   // Using a soft serial port
+#include <SoftwareSerial.h>
+SoftwareSerial softSerial(/*rx =*/10, /*tx =*/11);
+#define FPSerial softSerial
+#else
+#define FPSerial Serial1
+#endif
+
+DFRobotDFPlayerMini myDFPlayer;
+void printDetail(uint8_t type, int value);
+
+void setup()
+{
+#if (defined ESP32)
+  FPSerial.begin(9600, SERIAL_8N1, /*rx =*/D3, /*tx =*/D2);
+#else
+  FPSerial.begin(9600);
+#endif
+
+  Serial.begin(115200);
+
+  Serial.println();
+  Serial.println(F("DFRobot DFPlayer Mini Demo"));
+  Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
+
+  if (!myDFPlayer.begin(FPSerial, /*isACK = */true, /*doReset = */true)) {  //Use serial to communicate with mp3.
+    Serial.println(F("Unable to begin:"));
+    Serial.println(F("1.Please recheck the connection!"));
+    Serial.println(F("2.Please insert the SD card!"));
+    while(true){
+      delay(0); // Code to compatible with ESP8266 watch dog.
+    }
+  }
+  Serial.println(F("DFPlayer Mini online."));
+
+  myDFPlayer.volume(10);  //Set volume value. From 0 to 30
+  myDFPlayer.play(1);  //Play the first mp3
 }
 
-void loop() {
-  state = digitalRead(pirPin);         // Read the state of the PIR sensor
-  if (state == HIGH) {                 // If the PIR sensor detects movement (state = HIGH)
-    Serial.println("Somebody here!");  // Print "Somebody here!" to the serial monitor
-  } else {
-    Serial.println("Monitoring...");
-    delay(100);
+void loop()
+{
+  static unsigned long timer = millis();
+
+  if (millis() - timer > 3000) {
+    timer = millis();
+    myDFPlayer.next();  //Play next mp3 every 3 second.
   }
+
+  if (myDFPlayer.available()) {
+    printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+  }
+}
+
+void printDetail(uint8_t type, int value){
+  switch (type) {
+    case TimeOut:
+      Serial.println(F("Time Out!"));
+      break;
+    case WrongStack:
+      Serial.println(F("Stack Wrong!"));
+      break;
+    case DFPlayerCardInserted:
+      Serial.println(F("Card Inserted!"));
+      break;
+    case DFPlayerCardRemoved:
+      Serial.println(F("Card Removed!"));
+      break;
+    case DFPlayerCardOnline:
+      Serial.println(F("Card Online!"));
+      break;
+    case DFPlayerUSBInserted:
+      Serial.println("USB Inserted!");
+      break;
+    case DFPlayerUSBRemoved:
+      Serial.println("USB Removed!");
+      break;
+    case DFPlayerPlayFinished:
+      Serial.print(F("Number:"));
+      Serial.print(value);
+      Serial.println(F(" Play Finished!"));
+      break;
+    case DFPlayerError:
+      Serial.print(F("DFPlayerError:"));
+      switch (value) {
+        case Busy:
+          Serial.println(F("Card not found"));
+          break;
+        case Sleeping:
+          Serial.println(F("Sleeping"));
+          break;
+        case SerialWrongStack:
+          Serial.println(F("Get Wrong Stack"));
+          break;
+        case CheckSumNotMatch:
+          Serial.println(F("Check Sum Not Match"));
+          break;
+        case FileIndexOut:
+          Serial.println(F("File Index Out of Bound"));
+          break;
+        case FileMismatch:
+          Serial.println(F("Cannot Find File"));
+          break;
+        case Advertise:
+          Serial.println(F("In Advertise"));
+          break;
+        default:
+          break;
+      }
+      break;
+    default:
+      break;
+  }
+
+}
+```
+
+
+### Sample code "FullFunction", including all the functions. Please read the comments and documents in detail
+```C++
+/***************************************************
+ DFPlayer - A Mini MP3 Player For Arduino
+ <https://www.dfrobot.com/product-1121.html>
+
+ ***************************************************
+ This example shows the all the function of library for DFPlayer.
+
+ Created 2016-12-07
+ By [Angelo qiao](Angelo.qiao@dfrobot.com)
+
+ GNU Lesser General Public License.
+ See <http://www.gnu.org/licenses/> for details.
+ All above must be included in any redistribution
+ ****************************************************/
+
+/***********Notice and Trouble shooting***************
+ 1.Connection and Diagram can be found here
+<https://www.dfrobot.com/wiki/index.php/DFPlayer_Mini_SKU:DFR0299#Connection_Diagram>
+ 2.This code is tested on Arduino Uno, Leonardo, Mega boards.
+ ****************************************************/
+
+#include "Arduino.h"
+#include "DFRobotDFPlayerMini.h"
+
+#if (defined(ARDUINO_AVR_UNO) || defined(ESP8266))   // Using a soft serial port
+#include <SoftwareSerial.h>
+SoftwareSerial softSerial(/*rx =*/10, /*tx =*/11);
+#define FPSerial softSerial
+#else
+#define FPSerial Serial1
+#endif
+
+DFRobotDFPlayerMini myDFPlayer;
+void printDetail(uint8_t type, int value);
+
+void setup()
+{
+#if (defined ESP32)
+  FPSerial.begin(9600, SERIAL_8N1, /*rx =*/D3, /*tx =*/D2);
+#else
+  FPSerial.begin(9600);
+#endif
+
+  Serial.begin(115200);
+
+  Serial.println();
+  Serial.println(F("DFRobot DFPlayer Mini Demo"));
+  Serial.println(F("Initializing DFPlayer ... (May take 3~5 seconds)"));
+
+  if (!myDFPlayer.begin(FPSerial, /*isACK = */true, /*doReset = */true)) {  //Use serial to communicate with mp3.
+    Serial.println(F("Unable to begin:"));
+    Serial.println(F("1.Please recheck the connection!"));
+    Serial.println(F("2.Please insert the SD card!"));
+    while(true);
+  }
+  Serial.println(F("DFPlayer Mini online."));
+
+  myDFPlayer.setTimeOut(500); //Set serial communictaion time out 500ms
+
+  //----Set volume----
+  myDFPlayer.volume(10);  //Set volume value (0~30).
+  myDFPlayer.volumeUp(); //Volume Up
+  myDFPlayer.volumeDown(); //Volume Down
+
+  //----Set different EQ----
+  myDFPlayer.EQ(DFPLAYER_EQ_NORMAL);
+//  myDFPlayer.EQ(DFPLAYER_EQ_POP);
+//  myDFPlayer.EQ(DFPLAYER_EQ_ROCK);
+//  myDFPlayer.EQ(DFPLAYER_EQ_JAZZ);
+//  myDFPlayer.EQ(DFPLAYER_EQ_CLASSIC);
+//  myDFPlayer.EQ(DFPLAYER_EQ_BASS);
+
+  //----Set device we use SD as default----
+//  myDFPlayer.outputDevice(DFPLAYER_DEVICE_U_DISK);
+  myDFPlayer.outputDevice(DFPLAYER_DEVICE_SD);
+//  myDFPlayer.outputDevice(DFPLAYER_DEVICE_AUX);
+//  myDFPlayer.outputDevice(DFPLAYER_DEVICE_SLEEP);
+//  myDFPlayer.outputDevice(DFPLAYER_DEVICE_FLASH);
+
+  //----Mp3 control----
+//  myDFPlayer.sleep();     //sleep
+//  myDFPlayer.reset();     //Reset the module
+//  myDFPlayer.enableDAC();  //Enable On-chip DAC
+//  myDFPlayer.disableDAC();  //Disable On-chip DAC
+//  myDFPlayer.outputSetting(true, 15); //output setting, enable the output and set the gain to 15
+
+  //----Mp3 play----
+  myDFPlayer.next();  //Play next mp3
+  delay(1000);
+  myDFPlayer.previous();  //Play previous mp3
+  delay(1000);
+  myDFPlayer.play(1);  //Play the first mp3
+  delay(1000);
+  myDFPlayer.loop(1);  //Loop the first mp3
+  delay(1000);
+  myDFPlayer.pause();  //pause the mp3
+  delay(1000);
+  myDFPlayer.start();  //start the mp3 from the pause
+  delay(1000);
+  myDFPlayer.playFolder(15, 4);  //play specific mp3 in SD:/15/004.mp3; Folder Name(1~99); File Name(1~255)
+  delay(1000);
+  myDFPlayer.enableLoopAll(); //loop all mp3 files.
+  delay(1000);
+  myDFPlayer.disableLoopAll(); //stop loop all mp3 files.
+  delay(1000);
+  myDFPlayer.playMp3Folder(4); //play specific mp3 in SD:/MP3/0004.mp3; File Name(0~65535)
+  delay(1000);
+  myDFPlayer.advertise(3); //advertise specific mp3 in SD:/ADVERT/0003.mp3; File Name(0~65535)
+  delay(1000);
+  myDFPlayer.stopAdvertise(); //stop advertise
+  delay(1000);
+  myDFPlayer.playLargeFolder(2, 999); //play specific mp3 in SD:/02/004.mp3; Folder Name(1~10); File Name(1~1000)
+  delay(1000);
+  myDFPlayer.loopFolder(5); //loop all mp3 files in folder SD:/05.
+  delay(1000);
+  myDFPlayer.randomAll(); //Random play all the mp3.
+  delay(1000);
+  myDFPlayer.enableLoop(); //enable loop.
+  delay(1000);
+  myDFPlayer.disableLoop(); //disable loop.
+  delay(1000);
+
+  //----Read imformation----
+  Serial.println(myDFPlayer.readState()); //read mp3 state
+  Serial.println(myDFPlayer.readVolume()); //read current volume
+  Serial.println(myDFPlayer.readEQ()); //read EQ setting
+  Serial.println(myDFPlayer.readFileCounts()); //read all file counts in SD card
+  Serial.println(myDFPlayer.readCurrentFileNumber()); //read current play file number
+  Serial.println(myDFPlayer.readFileCountsInFolder(3)); //read file counts in folder SD:/03
+}
+
+void loop()
+{
+  static unsigned long timer = millis();
+
+  if (millis() - timer > 3000) {
+    timer = millis();
+    myDFPlayer.next();  //Play next mp3 every 3 second.
+  }
+
+  if (myDFPlayer.available()) {
+    printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+  }
+}
+
+void printDetail(uint8_t type, int value){
+  switch (type) {
+    case TimeOut:
+      Serial.println(F("Time Out!"));
+      break;
+    case WrongStack:
+      Serial.println(F("Stack Wrong!"));
+      break;
+    case DFPlayerCardInserted:
+      Serial.println(F("Card Inserted!"));
+      break;
+    case DFPlayerCardRemoved:
+      Serial.println(F("Card Removed!"));
+      break;
+    case DFPlayerCardOnline:
+      Serial.println(F("Card Online!"));
+      break;
+    case DFPlayerUSBInserted:
+      Serial.println("USB Inserted!");
+      break;
+    case DFPlayerUSBRemoved:
+      Serial.println("USB Removed!");
+      break;
+    case DFPlayerPlayFinished:
+      Serial.print(F("Number:"));
+      Serial.print(value);
+      Serial.println(F(" Play Finished!"));
+      break;
+    case DFPlayerError:
+      Serial.print(F("DFPlayerError:"));
+      switch (value) {
+        case Busy:
+          Serial.println(F("Card not found"));
+          break;
+        case Sleeping:
+          Serial.println(F("Sleeping"));
+          break;
+        case SerialWrongStack:
+          Serial.println(F("Get Wrong Stack"));
+          break;
+        case CheckSumNotMatch:
+          Serial.println(F("Check Sum Not Match"));
+          break;
+        case FileIndexOut:
+          Serial.println(F("File Index Out of Bound"));
+          break;
+        case FileMismatch:
+          Serial.println(F("Cannot Find File"));
+          break;
+        case Advertise:
+          Serial.println(F("In Advertise"));
+          break;
+        default:
+          break;
+      }
+      break;
+    default:
+      break;
+  }
+
 }

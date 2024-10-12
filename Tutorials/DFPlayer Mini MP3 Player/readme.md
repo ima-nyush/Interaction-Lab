@@ -12,9 +12,16 @@ The DFPlayer Mini MP3 Player For Arduino is a small and low cost MP3 module with
 
 ## Build the Circuit 
 ![circuit](./images/speakerpic.png)
+Note: The operating voltage of DFPlayer mini is 3.3 V, while most of the Arduino's operating voltage is 5 V. After our test, although it is possible to play music normally by directly connecting the Arduino directly to DFPlayer mini, there may be abnormal noises appearing. We recommend you to connect a 1k resistor in series with the RX pin of DFPlayer for voltage divider.
+
 
 ## Copy your mp3 into you micro SD card
-
+NOTE: The order you copy the mp3 into micro SD card will affect the order mp3 played , which means play(1) function will play the first mp3 copied into micro SD card.
+### For Mac User
+NOTE: If you are using Mac OS X to copy the mp3, the file system will automatically add hidden files like: "._0001.mp3" for index, which this module will handle as valid mp3 files. It is really annoying. So you can run following command in terminal to eliminate those files.
+```C++
+dot_clean /Volumes/<SDVolumeName>
+```
 
 ## Arduino Code
 We've created an Arduino library for DFPlayer Mini to simplify the method for you to make it work. Connect the hardware as the picture above shown and play with the sample code. You can search in your Arduino software or you can download the latest library here: [DFRobotDFPlayerMini](https://github.com/DFRobot/DFRobotDFPlayerMini/tree/master).

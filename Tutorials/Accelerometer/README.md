@@ -46,6 +46,9 @@ In order to make the values a bit more intelligible/usable, it would be wise to 
 int xValue;
 int yValue;
 int zValue;
+//the desired range (min/max) for remapping
+int mapMin = 0;
+int mapMax = 1023;
 
 void setup() {
   Serial.begin(9600);
@@ -57,12 +60,11 @@ void loop() {
   yValue = analogRead(A1);
   zValue = analogRead(A2);
 
-  //remap values
-  //remapped to 0-1023 in order to resemble usual min/max for analog sensors
-  //constrain in case we read values above our approximated max or below our approximated min values
-  xValue = constrain(map(xValue, 210, 290, 0, 1023), 0, 1023);
-  yValue = constrain(map(yValue, 210, 290, 0, 1023), 0, 1023);
-  zValue = constrain(map(zValue, 210, 290, 0, 1023), 0, 1023);
+  //remap values & constrain to ensure we stay within the desired range
+  xValue = constrain(map(xValue, 210, 290, mapMin, mapMax), mapMin, mapMax);
+  yValue = constrain(map(yValue, 210, 290, mapMin, mapMax), mapMin, mapMax);
+  zValue = constrain(map(zValue, 210, 290, mapMin, mapMax), mapMin, mapMax);
+
   //results
   Serial.print("x,y,z = ");
   Serial.print(xValue);
@@ -71,7 +73,12 @@ void loop() {
   Serial.print(", ");
   Serial.print(zValue);
   Serial.println();
+
   //small delay for stability
   delay(10);
 }
 ```
+
+### Motion/Knock/Vibration Calibration
+
+Calibrating for dynamic acceleration can be a bit trickier than for just tilt. 

@@ -53,7 +53,7 @@ void setup() {
 void loop() {
   static unsigned long timer = millis();
 
-  if (millis() - timer > 10000) { //switching to next song every 3 seconds
+  if (millis() - timer > 10000) { //switching to next song every 10 seconds
     timer = millis();
     myDFPlayer.next();
   }

@@ -20,8 +20,10 @@ Note: The operating voltage of DFPlayer mini is 3.3 V, while most of the Arduino
 ## Copy your mp3 into you micro SD card
 
 NOTE: The order you copy the mp3 into micro SD card will affect the order mp3 played , which means play(1) function will play the first mp3 copied into micro SD card.
-### For Mac User
-NOTE: If you are using Mac OS X to copy the mp3, the file system will automatically add hidden files like: "._0001.mp3" for index, which this module will handle as valid mp3 files. It is really annoying. Just go to a windows computer in the studio and then you'll see the hidden files, delete the hidden files. 
+
+> [!CAUTION]
+> For Mac User
+> NOTE: If you are using Mac OS X to copy the mp3, the file system will automatically add hidden files like: "._0001.mp3" for index, which this module will handle as valid mp3 files. It is really annoying. Just go to a windows computer in the studio and then you'll see the hidden files, delete the hidden files. 
 
 ## Arduino Code
 We've created an Arduino library for DFPlayer Mini to simplify the method for you to make it work. Connect the hardware as the picture above shown and play with the sample code. You can search in your Arduino software or you can download the latest library here: [DFRobotDFPlayerMini](https://github.com/DFRobot/DFRobotDFPlayerMini/tree/master).
@@ -33,7 +35,7 @@ We've created an Arduino library for DFPlayer Mini to simplify the method for yo
 #include "DFRobotDFPlayerMini.h"
 #include <SoftwareSerial.h>
 
-SoftwareSerial softSerial(4, 5)  //rx, tx
+SoftwareSerial softSerial(10, 11);  //rx, tx
 DFRobotDFPlayerMini myDFPlayer;
 
 void setup() {
@@ -44,14 +46,14 @@ void setup() {
   if (!myDFPlayer.begin(softSerial, /*isACK = */ false, /*doReset = */ false)) {  //Use serial to communicate with mp3.
     Serial.println("Error starting DFplayer");
   }
-  myDFPlayer.volume(10);  //Set volume value. From 0 to 30
+  myDFPlayer.volume(2);  //Set volume value. From 0 to 30
   myDFPlayer.play(1);     //Play the first mp3
 }
 
 void loop() {
   static unsigned long timer = millis();
 
-  if (millis() - timer > 3000) {
+  if (millis() - timer > 10000) { //switching to next song every 3 seconds
     timer = millis();
     myDFPlayer.next();
   }

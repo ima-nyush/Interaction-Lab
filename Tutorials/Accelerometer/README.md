@@ -81,4 +81,4 @@ void loop() {
 
 ### Motion/Knock/Vibration Calibration
 
-Calibrating for dynamic acceleration can be a bit trickier than for just tilt. 
+Calibrating for dynamic acceleration can be a bit trickier than for just tilt. While it would still be ideal to remap the values to a more usable range, to find the min/max range of the raw data can be harder, since this can be widely varied depending on how the sensor is being used (e.g. detecting acceleration of a car vs a parachute falling). Whereas the minimum will be the numbers at resting, finding the maximum will require you to find the highest possible acceleration possible in your scenerio, then use that as your maximum value. It may also be helpful to shrink the range a little (raise the minimum/lower the maximum) then constrain the map to make either end of the map a little more stable.

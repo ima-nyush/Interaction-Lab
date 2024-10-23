@@ -1,56 +1,29 @@
 ```C++
-int clkPin = 7;
-int dtPin = 6;
-int swPin = 5;
+#define PIN_A 2
+#define PIN_B 3
 
-int count; //count from original position (0)
-int dir; //1 = clockwise 2 = counter-clockwise
-int button;
-int pollRate = 25000;  //in uS
-
+int delta = 0;
 
 void setup() {
-  Serial.begin(9600);
-  pinMode(clkPin, INPUT);
-  pinMode(dtPin, INPUT);
-  pinMode(swPin, INPUT);
+  Serial.begin(115200);
+  pinMode(PIN_A, INPUT_PULLUP);
+  pinMode(PIN_B, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(PIN_A), shaft_moved, FALLING);
 }
 
 void loop() {
-  rotaryEncoder(clkPin, dtPin, pollRate);
-  Serial.print(count);
-  Serial.print(",");
-  Serial.print(dir);
-  Serial.print(",");
-  Serial.println(button);
+  int old = delta;
+  delta = 0;
+  Serial.println(10000+old);
+  delay(100);
 }
 
-void rotaryEncoder(int cp, int dp, int pr) {
-  unsigned long timeStarted = micros();
-  int clkStateOld = digitalRead(cp);
-
-  //print yes if button is pressed, print no if not
-  if (digitalRead(swPin) == LOW) {
-    button = 1;
+void shaft_moved() {
+  int pinb_value = digitalRead(PIN_B);
+  if (pinb_value == HIGH) {
+    delta = delta - 1;
   } else {
-    button = 0;
-  }
-  //give window of time(default 25ms) to register pulse
-  while (micros() <= timeStarted + pr) {
-    int clkState = digitalRead(cp);
-    int dtState = digitalRead(dp);
-    if (clkState == HIGH && clkState != clkStateOld) {  //rising
-      if (dtState == LOW) {
-        count++;
-        dir = 1;
-        break;
-      } else {
-        count--;
-        dir = 2;
-        break;
-      }
-    }
-    clkStateOld = clkState;
+    delta = delta + 1;
   }
 }
 

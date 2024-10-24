@@ -1,30 +1,37 @@
 ```C++
-#define PIN_A 2
-#define PIN_B 3
-
-int delta = 0;
+//Pinouts
+int clkPin = 2;
+int dtPin = 3;
+int swPin = 4;
+//value
+int val;
+//max rate the sensor can trigger in uS
+//this helps with mechanical bounce
+int pollRate = 2500;
+unsigned long lastPollTime;
 
 void setup() {
-  Serial.begin(115200);
-  pinMode(PIN_A, INPUT_PULLUP);
-  pinMode(PIN_B, INPUT_PULLUP);
-  attachInterrupt(digitalPinToInterrupt(PIN_A), shaft_moved, FALLING);
+  Serial.begin(9600);
+  pinMode(clkPin, INPUT);
+  pinMode(dtPin, INPUT);
+  attachInterrupt(digitalPinToInterrupt(clkPin), shaft_moved, RISING);
 }
 
 void loop() {
-  int old = delta;
-  delta = 0;
-  Serial.println(10000+old);
+  Serial.println(val);
   delay(100);
 }
 
 void shaft_moved() {
-  int pinb_value = digitalRead(PIN_B);
-  if (pinb_value == HIGH) {
-    delta = delta - 1;
-  } else {
-    delta = delta + 1;
+  if (micros() >= lastPollTime + pollRate) {
+    int dtVal = digitalRead(dtPin);
+    lastPollTime = micros();
+    if (dtVal == HIGH) {
+      val -= 1;
+    } else {
+      val += 1;
+    }
   }
 }
-
+```
 ```

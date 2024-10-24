@@ -18,6 +18,9 @@ void setup() {
 }
 
 void loop() {
+  int button = digitalRead(swPin);
+  Serial.print(button);
+  Serial.print(", ");
   Serial.println(val);
   delay(100);
 }
@@ -27,9 +30,9 @@ void shaft_moved() {
     int dtVal = digitalRead(dtPin);
     lastPollTime = micros();
     if (dtVal == HIGH) {
-      val -= 1;
-    } else {
       val += 1;
+    } else {
+      val -= 1;
     }
   }
 }

@@ -4,7 +4,7 @@ This tutorial is still to be developed. If you want to contribute to it, please 
 
 Our steppers have an approximate max speed of 900rpm when set to full-stepping. Going past this may result in the motor missing steps or stalling entirely.
 
-##IxLab examples codes from Andy for stepper motors based on by Mike McCauley's AccelStepper library (mikem@airspayce.com)
+## IxLab examples codes from Andy for stepper motors based on by Mike McCauley's AccelStepper library (mikem@airspayce.com)
 
 Constant speed example: Shows how to run AccelStepper in the simplest, fixed speed mode with no accelerations.
 Run to position example: Shows how to use runToNewPosition which sets a new target position and then waits until the stepper has achieved it.

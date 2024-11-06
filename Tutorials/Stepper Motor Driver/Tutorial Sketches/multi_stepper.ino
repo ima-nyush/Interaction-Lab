@@ -1,7 +1,7 @@
 // MultiStepper example by Mike McCauley (mikem@airspayce.com)
 // Shows how to multiple simultaneous steppers
-// Runs one stepper forwards and backwards, accelerating and decelerating
-// at the limits. Runs other stepper at the same time
+// Runs both steppers forwards and backwards, accelerating and decelerating
+// at the limits
 
 #include <AccelStepper.h>
 

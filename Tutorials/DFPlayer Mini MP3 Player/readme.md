@@ -23,7 +23,7 @@ NOTE: The order you copy the mp3 into micro SD card will affect the order mp3 pl
 
 > [!CAUTION]
 > For Mac User
-> NOTE: If you are using Mac OS X to copy the mp3, the file system will automatically add hidden files like: "._0001.mp3" for index, which this module will handle as valid mp3 files. It is really annoying. You can use shortcut Command + Shift + . and then you'll see the hidden files, delete the hidden files. 
+> NOTE: If you are using Mac OS X to copy the mp3, the file system will automatically add hidden files like: "._0001.mp3" for index, which this module will handle as valid mp3 files. It is really annoying. You can use the windows computer in the studio, open the folder then you'll see the hidden files, delete the hidden files. 
 
 ## Arduino Code
 We've created an Arduino library for DFPlayer Mini to simplify the method for you to make it work. Connect the hardware as the picture above shown and play with the sample code. You can search in your Arduino software or you can download the latest library here: [DFRobotDFPlayerMini](https://github.com/DFRobot/DFRobotDFPlayerMini/tree/master).

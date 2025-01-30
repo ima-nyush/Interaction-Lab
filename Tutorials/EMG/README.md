@@ -1,7 +1,8 @@
 # EMG (Electromyography) Sensor or Muscle Sensor
 
 Electromyography (EMG) is a technique that measures electrical activity in response to a nerve's stimulation of the muscle. 
-This tutorial will showcase how to place this sensor in your forearm to detect the clinching of your fist to turn on the internal Arduino Uno LED in pin 13.
+This tutorial will showcase how to place this sensor in your forearm to detect the clenching of your fist to turn on the internal Arduino Uno LED in pin 13.
+The EMG sensor works best as an ON/OFF sensor since achieving a large, usable analog range is quite challenging.
 
 ## Hardware
 <img src="./Images/EMG.png" width="400" >

@@ -19,7 +19,7 @@ Open the strap and place if below your elbow. Close the strap firmly for optimal
 * 1 x EMG sensor
 
 
- ![Image of tm1637 Diagram](./Images/EMG-diagram.png)
+ ![Image of tm1637 Diagram](./Images/EMG_diagram.png)
 
 1. Connect the EMG sesnor as showcased on the diagram above.
 2. Place the sensor firmly on your forearm.

@@ -3,7 +3,7 @@
 This is a simple tutorial for the 4-Digit 7-Segment Display TM1637 Connected to an Arduino Uno.
 
 ## Hardware
-![Image of tm1637](./Images/tm1637.jpg) | width=400)
+![Image of tm1637](./Images/tm1637.jpg| width=400)
 
 The TM1637 Module has only four pins which is great for any project involving a clock, timer, or a counter.
 It consists of seven LEDs arranged in a ‘8’ shaped pattern. Each LED is referred to as a segment, because when illuminated, it forms part of a digit. There are 4 digits in total.

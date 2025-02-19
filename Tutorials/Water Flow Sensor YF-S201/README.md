@@ -5,12 +5,12 @@ So when a fluid flows through the rotor assembly, the rotor will rotate and the 
 By counting these generated pulses, the amount of water passing through the sensor can be calculated.
 
 ## Hardware
-<img src="./images/flow-sensor.png" width="600" >
+<img src="./images/flow-sensor.png" width="500" >
 This sensor has 3 pins:
 
-Red: 5V
-Black: Ground
-Yellow: Pulse output
+* Red: 5V
+* Black: Ground
+* Yellow: Pulse Signal
 
 
 ### Circuit Setup
@@ -19,8 +19,7 @@ Yellow: Pulse output
 * 3 x Jumper Wires
 * 1 x  YF-S201 sensor
 
-
- ![Image of tm1637 Diagram](./images/flow-circuit.png)
+ <img src="./images/flow-circuit.png" width="500" >
 
 1. Connect the water flow sesnor as showcased on the diagram above.
 2. Blow through the opening or let water flow though to get a reading.

@@ -22,7 +22,7 @@ This sensor has 3 pins:
  <img src="./images/flow-circuit.png" width="500" >
 
 1. Connect the water flow sesnor as showcased on the diagram above.
-2. Blow through the opening or let water flow though to get a reading.
+2. Blow through the opening or let water flow through to get a reading.
 
 
 ## Code 1

@@ -5,12 +5,12 @@ So when a fluid flows through the rotor assembly, the rotor will rotate and the 
 By counting these generated pulses, the amount of water passing through the sensor can be calculated.
 
 ## Hardware
-<img src="./images/flow-sensor.png" width="400" >
+<img src="./images/flow-sensor.png" width="600" >
 This sensor has 3 pins:
 
-VCC: Module power supply – 5V
-GND: Ground
-OUT: Pulse output
+Red: 5V
+Black: Ground
+Yellow: Pulse output
 
 
 ### Circuit Setup

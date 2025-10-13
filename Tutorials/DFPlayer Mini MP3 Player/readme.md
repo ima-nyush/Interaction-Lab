@@ -61,3 +61,35 @@ void loop() {
 }
 ```
 
+### Sample code to play a song after pressing a button
+```C++
+#include “DFRobotDFPlayerMini.h”
+#include <SoftwareSerial.h>
+SoftwareSerial softSerial(10, 11);  //rx, tx
+DFRobotDFPlayerMini myDFPlayer;
+
+int buttonPin = 2;
+int buttonVal = 0;      //latest value
+int prevButtonVal = 0;  //previous value
+
+void setup() {
+  pinMode(buttonPin, INPUT);
+  Serial.begin(115200);
+  softSerial.begin(9600);
+  if (!myDFPlayer.begin(softSerial, /*isACK = */ false, /*doReset = */ false)) {  //Use serial to communicate with mp3.
+    Serial.println(“Error starting DFplayer”);
+  }
+  Serial.println(“DFPlayer Mini online.“);
+  myDFPlayer.volume(20);  //Set volume value. From 0 to 30
+}
+
+void loop() {
+  buttonVal = digitalRead(buttonPin);
+  if (prevButtonVal == LOW && buttonVal == HIGH) {
+    myDFPlayer.play(1);  //Play the first mp3
+  }
+  prevButtonVal = buttonVal;
+  delay(20);
+}
+```
+

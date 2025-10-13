@@ -46,7 +46,8 @@ void setup() {
   if (!myDFPlayer.begin(softSerial, /*isACK = */ false, /*doReset = */ false)) {  //Use serial to communicate with mp3.
     Serial.println("Error starting DFplayer");
   }
-  myDFPlayer.volume(2);  //Set volume value. From 0 to 30
+  Serial.println("DFPlayer Mini online.");
+  myDFPlayer.volume(30);  //Set volume value. From 0 to 30
   myDFPlayer.play(1);     //Play the first mp3
 }
 

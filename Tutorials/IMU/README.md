@@ -24,15 +24,15 @@ Here are some common IMU specifications:
 * 4 x Jumper Wires (M/F)
 * 1 x MPU 6050
 
- ![Image of MPU6050 Diagram](./Images/MPU6050_circuit.jpeg)
 
 
-|MPU6050    | Arduino        | 
+
+|MPU6050    | Arduino Uno        | 
 | ------------- |:-------------:| 
 | GND     | GND | 
 | VCC     | 5V     |   
-| SDA |  SDA   | 
-| SCL | SCL      | 
+| SDA |  A4   | 
+| SCL | A5      | 
 
 
 ## Example Code 1 - Pitch, Yaw and Roll in Arduino
@@ -115,6 +115,17 @@ void loop() {
 
 
 ## Example Code 2 - MPU6050 paired with an Arduino Leonardo for controlling your mouse's laptop
+
+ ![Image of MPU6050 Diagram](./Images/MPU6050_circuit.jpeg)
+
+|MPU6050    | Arduino Leonardo        | 
+| ------------- |:-------------:| 
+| GND     | GND | 
+| VCC     | 5V     |   
+| SDA |  SDA   | 
+| SCL | SCL      | 
+
+
 
 **Note:**
 To run this code, you will need to install the following libraries in your library manager:

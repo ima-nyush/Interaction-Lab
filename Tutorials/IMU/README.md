@@ -62,11 +62,11 @@ void setup(void) {
 
   if (!mpu.begin()) {
     Serial.println("Failed to find MPU6050 chip");
-    while (1) {
-      delay(10);
-    }
+    while (1) delay(10);
   }
+
   Serial.println("MPU6050 Found!");
+
   mpu.setAccelerometerRange(MPU6050_RANGE_8_G);
   mpu.setGyroRange(MPU6050_RANGE_500_DEG);
   mpu.setFilterBandwidth(MPU6050_BAND_21_HZ);
@@ -80,23 +80,41 @@ void loop() {
   mpu.getEvent(&a, &g, &temp);
 
   unsigned long currentTime = millis();
-  float dt = (currentTime - lastTime) / 1000.0; 
+  float dt = (currentTime - lastTime) / 1000.0;
   lastTime = currentTime;
 
-  // Calculate accelerometer angles (in degrees)
-  float accelPitch = atan2(a.acceleration.y, sqrt(a.acceleration.x * a.acceleration.x + a.acceleration.z * a.acceleration.z)) * 180 / PI;
-  float accelRoll = atan2(-a.acceleration.x, a.acceleration.z) * 180 / PI;
+  // --- Accelerometer angles ---
+  float accelPitch = atan2(a.acceleration.y, sqrt(a.acceleration.x * a.acceleration.x + a.acceleration.z * a.acceleration.z)) * 180.0 / PI;
+  float accelRoll  = atan2(-a.acceleration.x, a.acceleration.z) * 180.0 / PI;
 
-  // Integrate gyroscope data (convert rad/s to deg/s)
-  float gyroPitchRate = g.gyro.x * 180 / PI;
-  float gyroRollRate = g.gyro.y * 180 / PI;
-  float gyroYawRate = g.gyro.z * 180 / PI;
+  // --- Gyro (deg/sec) ---
+  float gyroPitchRate = g.gyro.x * 180.0 / PI;
+  float gyroRollRate  = g.gyro.y * 180.0 / PI;
+  float gyroYawRate   = g.gyro.z * 180.0 / PI;
 
-  // Complementary filter
-  const float alpha = 0.98; 
+  // --- Complementary filter (slightly less aggressive) ---
+  const float alpha = 0.95; // more accel correction → less drift
   pitch = alpha * (pitch + gyroPitchRate * dt) + (1 - alpha) * accelPitch;
-  roll = alpha * (roll + gyroRollRate * dt) + (1 - alpha) * accelRoll;
-  yaw += gyroYawRate * dt; 
+  roll  = alpha * (roll  + gyroRollRate  * dt) + (1 - alpha) * accelRoll;
+
+  // --- Yaw (gyro only, so stabilize manually) ---
+  yaw += gyroYawRate * dt;
+
+  // 1. Yaw drift limiter (if gyro reading is tiny, fade toward zero)
+  if (abs(gyroYawRate) < 0.5) {
+    yaw *= 0.999;  // slow auto-recenter
+  }
+
+  // 2. Low-pass filter yaw (smooth jitter)
+  yaw = 0.9 * yaw + 0.1 * (gyroYawRate * dt);
+
+  // 3. Constrain yaw to ±180
+  if (yaw > 180) yaw -= 360;
+  if (yaw < -180) yaw += 360;
+
+  // 4. Constrain pitch & roll too
+  pitch = constrain(pitch, -90, 90);
+  roll  = constrain(roll, -90, 90);
 
   // --- Print values ---
   Serial.print("Pitch: ");
@@ -107,7 +125,7 @@ void loop() {
   Serial.print(yaw);
   Serial.println("°");
 
-  delay(100);
+  delay(10);
 }
 
 

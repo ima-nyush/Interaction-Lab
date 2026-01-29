@@ -34,6 +34,10 @@ Here are some common IMU specifications:
 | SDA |  A4   | 
 | SCL | A5      | 
 
+## Use the example code from this link. It works better than the one below!
+Download the MPU6050_light library in your Arduino IDE first.
+
+https://github.com/rfetick/MPU6050_light
 
 ## Example Code 1 - Pitch, Yaw and Roll in Arduino
 

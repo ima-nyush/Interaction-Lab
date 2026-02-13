@@ -34,8 +34,11 @@ Here are some common IMU specifications:
 | SDA |  A4   | 
 | SCL | A5      | 
 
+ ![Image of MPU6050 Diagram](./Images/MPU6050_circuit.jpeg)
+
 ## Use the example code from this link. It works better than the one below!
-Download the MPU6050_light library in your Arduino IDE first.
+- Download the MPU6050_light library in your Arduino IDE first.
+- In your ArduinoIDE, go to File -> Examples -> MPU6050_Light -> Choose a example based on your need!
 
 https://github.com/rfetick/MPU6050_light
 

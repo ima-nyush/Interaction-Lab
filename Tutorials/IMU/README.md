@@ -10,8 +10,6 @@ The MPU6050 is an inertial measurement unit that calculates three-axis accelerom
 
 ## Hardware
 
-Here are some common IMU specifications:
-
 <u>Gyroscope </u> – The gyroscope measures rotational velocity or rate of change of the angular position over time, along the X, Y and Z axis. 
 
 <u>Accelerometer </u> – The accelerometer can measure both static and dynamic forces of acceleration, along the X, Y and Z axis. The earth gravitational force is a typical example of static force, while dynamic forces can be caused by vibrations, movements and so on.
@@ -23,33 +21,38 @@ Here are some common IMU specifications:
 * 4 x Jumper Wires (M/F)
 * 1 x MPU 6050
 
+![Image of MPU6050 uno](./Images/MPU6050_uno.png)
+
 
 |MPU6050    | Arduino Uno        | 
 | ------------- |:-------------:| 
 | GND     | GND | 
 | VCC     | 5V     |   
 | SDA |  A4   | 
-| SCL | A5      | 
+| SCL | A5      |
 
- ![Image of MPU6050 uno](./Images/MPU6050_uno.png)
-
+<br />
 - Download the MPU6050_light library in your Arduino IDE first.
-![Image of MPU6050 library](./Images/MPU6050_library.png)
+
+  ![Image of MPU6050 library](./Images/MPU6050_library.png)
 
 - In your ArduinoIDE, go to File -> Examples -> MPU6050_Light -> Get Angle
-![Image of MPU6050 example](./Images/MPU6050_example.png)
+
+  ![Image of MPU6050 example](./Images/MPU6050_example.png)
 
 
 Original source code:
 https://github.com/rfetick/MPU6050_light  
  
 
+<br />
+<br />
+<br />
+<br />
+<br />
 
 
-
-
-
-## Example Code 2 - MPU6050 paired with an Arduino Leonardo for controlling your mouse's laptop
+## Example Code 2 - MPU6050 paired with an Arduino Leonardo for controlling your mouse
 
  ![Image of MPU6050 Diagram](./Images/MPU6050_circuit.jpeg)
 

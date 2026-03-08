@@ -31,13 +31,13 @@ Here are some common IMU specifications:
 | SDA |  A4   | 
 | SCL | A5      | 
 
- ![Image of MPU6050 Diagram](./Images/MPU6050_uno.jpeg)
+ ![Image of MPU6050 uno](./Images/MPU6050_uno.jpeg)
 
 - Download the MPU6050_light library in your Arduino IDE first.
- ![Image of MPU6050 Diagram](./Images/MPU6050_library.jpeg)
+ ![Image of MPU6050 library](./Images/MPU6050_library.jpeg)
 
 - In your ArduinoIDE, go to File -> Examples -> MPU6050_Light -> Get Angle
--  ![Image of MPU6050 Diagram](./Images/MPU6050_example.jpeg)
+-  ![Image of MPU6050 example](./Images/MPU6050_example.jpeg)
 
 
 Original source code:

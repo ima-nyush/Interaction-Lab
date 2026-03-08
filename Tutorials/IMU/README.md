@@ -34,15 +34,19 @@ Here are some common IMU specifications:
  ![Image of MPU6050 uno](./Images/MPU6050_uno.png)
 
 - Download the MPU6050_light library in your Arduino IDE first.
- ![Image of MPU6050 library](./Images/MPU6050_library.png)
+![Image of MPU6050 library](./Images/MPU6050_library.png)
 
 - In your ArduinoIDE, go to File -> Examples -> MPU6050_Light -> Get Angle
--  ![Image of MPU6050 example](./Images/MPU6050_example.png)
+![Image of MPU6050 example](./Images/MPU6050_example.png)
 
 
 Original source code:
 https://github.com/rfetick/MPU6050_light  
  
+
+
+
+
 
 
 ## Example Code 2 - MPU6050 paired with an Arduino Leonardo for controlling your mouse's laptop

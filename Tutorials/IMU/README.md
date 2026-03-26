@@ -35,6 +35,7 @@ The MPU6050 is an inertial measurement unit that calculates three-axis accelerom
 - Download the MPU6050_light library in your Arduino IDE first.
 
   ![Image of MPU6050 library](./Images/MPU6050_library.png)
+<br />
   Original source code:
 https://github.com/rfetick/MPU6050_light  
 

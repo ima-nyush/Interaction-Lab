@@ -50,6 +50,7 @@ https://github.com/rfetick/MPU6050_light
 ```C++
 /* Get tilt angles on X and Y, and rotation angle on Z
  * Angles are given in degrees
+ * We perform mpu.update() only with the millis() interval
  * 
  * License: MIT
  */

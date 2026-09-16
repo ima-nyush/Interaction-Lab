@@ -40,7 +40,7 @@ https://github.com/rfetick/MPU6050_light
 
 - In your ArduinoIDE, go to File -> Examples -> DHT11 -> ReadTempAndHumidity
 
-  ![Image of DHT11 example](./Images/dht11_example.png)
+  ![Image of DHT11 example](./Images/dht11_example.jpg)
 
 
 

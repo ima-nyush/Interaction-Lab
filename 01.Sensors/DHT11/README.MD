@@ -8,8 +8,6 @@ The DHT11 is a digital humidity‑temperature sensor that measures temperature a
 
 ## Hardware
 
-At the heart of this module lies the DHT11 digital temperature and humidity sensor manufactured by AOSONG.
-
 The sensor is capable of measuring temperatures ranging from 0°C to 50°C with an accuracy of ±2.0°C, and humidity levels between 20% and 80% with 5% accuracy.
 
 Another important detail is how often it updates its readings. The DHT11 has a sampling rate of 1 Hz, which means it can give you new data once every second.
@@ -32,11 +30,11 @@ Another important detail is how often it updates its readings. The DHT11 has a s
 
 Now you’re ready to connect the DHT11 module to your Arduino.
 
-Start by connecting the + (VCC) pin to the Arduino’s 5V pin. 
+Start by connecting the – (GND) pin to one of the Arduino GND pins. 
 
-Next, connect the – (GND) pin to one of the Arduino GND pins. 
+Next, connect the module’s Out pin (S) to digital pin 2 on the Arduino.
 
-Finally, connect the module’s Out pin to digital pin 2 on the Arduino.
+Finally, connect the + (VCC) pin to the Arduino’s 5V pin. 
 
 ![Image of DHT11_circut](./Images/dht11_circut.jpg)
 
@@ -75,16 +73,11 @@ This test sketch will print the temperature and relative humidity values to the 
 // Include the DHT11 library for interfacing with the sensor.
 #include <DHT11.h>
 
-// - For Arduino: Connect the sensor to Digital I/O Pin 2.
-
+// Connect the sensor to Digital Pin 2.
 DHT11 dht11(2);
 
 void setup() {
-    // Initialize serial communication to allow debugging and data readout.
-    // Using a baud rate of 9600 bps.
     Serial.begin(9600);
-    
-    dht11.setDelay(500); // Set this to the desired delay. Default is 500ms.
 }
 
 void loop() {

@@ -1,8 +1,8 @@
-# DHT11 digital temperature and humidity sensor
+# DHT11 Digital Temperature and Humidity Sensor
 
 The DHT11 is a digital humidity‑temperature sensor that measures temperature and relative humidity data.
 
-**The first example** code shows you how to use the DHT11 in Arduino using the DHT11 by Dhruba Saha.
+**The example code** shows you how to use the DHT11 in Arduino using the DHT11 by Dhruba Saha.
 
 
 
@@ -28,7 +28,7 @@ Another important detail is how often it updates its readings. The DHT11 has a s
 | ------------- |:-------------:| 
 | GND     | GND | 
 | VCC     | 5V     |   
-| S |  D2   | 
+| SIG |  D2   | 
 
 <br />
 - Download the DHT11 library in your Arduino IDE first.

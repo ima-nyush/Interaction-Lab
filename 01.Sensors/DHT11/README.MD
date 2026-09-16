@@ -4,8 +4,6 @@ The MPU6050 is an inertial measurement unit that calculates three-axis accelerom
 
 **The first example** code shows you how to use the MPU6050 in Arduino using the library MPU6050_light by rfetick.
 
-**The second example** code show how to use the MPU6050 paired with an Arduino Leonardo to control the mouse cursor from your laptop.
-
 
 
 ## Hardware
@@ -15,7 +13,7 @@ The MPU6050 is an inertial measurement unit that calculates three-axis accelerom
 <u>Accelerometer </u> – The accelerometer can measure both static and dynamic forces of acceleration, along the X, Y and Z axis. The earth gravitational force is a typical example of static force, while dynamic forces can be caused by vibrations, movements and so on.
 
 
-### Example 1 - Circuit Setup
+###  Circuit Setup
 
 * 1 x Arduino Uno
 * 4 x Jumper Wires (M/F)
@@ -34,7 +32,7 @@ The MPU6050 is an inertial measurement unit that calculates three-axis accelerom
 <br />
 - Download the MPU6050_light library in your Arduino IDE first.
 
-  ![Image of MPU6050 library](./Images/MPU6050_library.png)
+  ![Image of DHT11 library](./Images/dht11_library.png)
 <br />
   Original source code:
 https://github.com/rfetick/MPU6050_light  

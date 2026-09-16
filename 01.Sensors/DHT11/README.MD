@@ -39,7 +39,7 @@ Finally, connect the + (VCC) pin to the Arduino’s 5V pin.
 ![Image of DHT11_circut](./Images/dht11_circut.jpg)
 
 <br />
-- Download the DHT11 library in your Arduino IDE first.
+- Go to the library Manager inside the Arduino IDE. Search and download the DHT11 library by Dhruba Saha.
 
   ![Image of DHT11 library](./Images/dht11_library.png)
 <br />
@@ -49,8 +49,6 @@ Finally, connect the + (VCC) pin to the Arduino’s 5V pin.
 - In your ArduinoIDE, go to File -> Examples -> DHT11 -> ReadTempAndHumidity
 
   ![Image of DHT11 example](./Images/dht11_example.jpg)
-
-After installing the library, copy and paste this sketch into the Arduino IDE.
 
 This test sketch will print the temperature and relative humidity values to the serial monitor.
 

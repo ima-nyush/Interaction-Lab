@@ -45,8 +45,8 @@ Finally, connect the module’s Out pin to digital pin 2 on the Arduino.
 
   ![Image of DHT11 library](./Images/dht11_library.png)
 <br />
-  Original source code:
-https://github.com/rfetick/MPU6050_light  
+
+
 
 - In your ArduinoIDE, go to File -> Examples -> DHT11 -> ReadTempAndHumidity
 
@@ -84,8 +84,7 @@ void setup() {
     // Using a baud rate of 9600 bps.
     Serial.begin(9600);
     
-    // Uncomment the line below to set a custom delay between sensor readings (in milliseconds).
-    // dht11.setDelay(500); // Set this to the desired delay. Default is 500ms.
+    dht11.setDelay(500); // Set this to the desired delay. Default is 500ms.
 }
 
 void loop() {

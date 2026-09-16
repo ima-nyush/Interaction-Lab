@@ -30,6 +30,16 @@ Another important detail is how often it updates its readings. The DHT11 has a s
 | VCC     | 5V     |   
 | SIG |  D2   | 
 
+Now you’re ready to connect the DHT11 module to your Arduino.
+
+Start by connecting the + (VCC) pin to the Arduino’s 5V pin. 
+
+Next, connect the – (GND) pin to one of the Arduino GND pins. 
+
+Finally, connect the module’s Out pin to digital pin 2 on the Arduino.
+
+![Image of DHT11_circut](./Images/dht11_circut.jpg)
+
 <br />
 - Download the DHT11 library in your Arduino IDE first.
 
@@ -41,6 +51,10 @@ https://github.com/rfetick/MPU6050_light
 - In your ArduinoIDE, go to File -> Examples -> DHT11 -> ReadTempAndHumidity
 
   ![Image of DHT11 example](./Images/dht11_example.jpg)
+
+After installing the library, copy and paste this sketch into the Arduino IDE.
+
+This test sketch will print the temperature and relative humidity values to the serial monitor.
 
 
 

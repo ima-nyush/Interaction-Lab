@@ -1,93 +1,99 @@
-# IMU (Inertial measurement unit) - MPU6050
+# DHT11 digital temperature and humidity sensor
 
-The MPU6050 is an inertial measurement unit that calculates three-axis accelerometer and three-axis gyroscope data.
+The DHT11 is a digital humidity‑temperature sensor that measures temperature and relative humidity data.
 
-**The first example** code shows you how to use the MPU6050 in Arduino using the library MPU6050_light by rfetick.
+**The first example** code shows you how to use the DHT11 in Arduino using the DHT11 by Dhruba Saha.
 
 
 
 ## Hardware
 
-<u>Gyroscope </u> – The gyroscope measures rotational velocity or rate of change of the angular position over time, along the X, Y and Z axis. 
+At the heart of this module lies the DHT11 digital temperature and humidity sensor manufactured by AOSONG.
 
-<u>Accelerometer </u> – The accelerometer can measure both static and dynamic forces of acceleration, along the X, Y and Z axis. The earth gravitational force is a typical example of static force, while dynamic forces can be caused by vibrations, movements and so on.
+The sensor is capable of measuring temperatures ranging from 0°C to 50°C with an accuracy of ±2.0°C, and humidity levels between 20% and 80% with 5% accuracy.
+
+Another important detail is how often it updates its readings. The DHT11 has a sampling rate of 1 Hz, which means it can give you new data once every second.
 
 
 ###  Circuit Setup
 
 * 1 x Arduino Uno
-* 4 x Jumper Wires (M/F)
-* 1 x MPU 6050
+* 3 x Jumper Wires (M/F)
+* 1 x DHT11
 
-![Image of MPU6050 uno](./Images/MPU6050_uno.png)
+![Image of DHT11](./Images/dht11.png)
 
 
-|MPU6050    | Arduino Uno        | 
+|DHT11    | Arduino Uno        | 
 | ------------- |:-------------:| 
 | GND     | GND | 
 | VCC     | 5V     |   
-| SDA |  A4   | 
-| SCL | A5      |
+| S |  D2   | 
 
 <br />
-- Download the MPU6050_light library in your Arduino IDE first.
+- Download the DHT11 library in your Arduino IDE first.
 
   ![Image of DHT11 library](./Images/dht11_library.png)
 <br />
   Original source code:
 https://github.com/rfetick/MPU6050_light  
 
-- In your ArduinoIDE, go to File -> Examples -> MPU6050_Light -> Get Angle
+- In your ArduinoIDE, go to File -> Examples -> DHT11 -> ReadTempAndHumidity
 
-  ![Image of MPU6050 example](./Images/MPU6050_example.png)
+  ![Image of DHT11 example](./Images/dht11_example.png)
 
 
 
  
 
 ```C++
-/* Get tilt angles on X and Y, and rotation angle on Z
- * Angles are given in degrees
- * We perform mpu.update() only with the millis() interval
- * 
+/**
+ * DHT11 Sensor Reader
+ * This sketch reads temperature and humidity data from the DHT11 sensor and prints the values to the serial port.
+ * It also handles potential error states that might occur during reading.
+ *
+ * Author: Dhruba Saha
+ * Editor: Helen Zhang
+ * Version: 2.1.0
  * License: MIT
  */
 
-#include "Wire.h"
-#include <MPU6050_light.h>
+// Include the DHT11 library for interfacing with the sensor.
+#include <DHT11.h>
 
-MPU6050 mpu(Wire);
-unsigned long timer = 0;
+// - For Arduino: Connect the sensor to Digital I/O Pin 2.
+
+DHT11 dht11(2);
 
 void setup() {
-  Serial.begin(9600);
-  Wire.begin();
-
-  byte status = mpu.begin();
-  Serial.print(F("MPU6050 status: "));
-  Serial.println(status);
-  while (status != 0) {}  // stop everything if could not connect to MPU6050
-
-  Serial.println(F("Calculating offsets, do not move MPU6050"));
-  delay(1000);
-  // mpu.upsideDownMounting = true; // uncomment this line if the MPU6050 is mounted upside-down
-  mpu.calcOffsets();  // gyro and accelero
-  Serial.println("Done!\n");
+    // Initialize serial communication to allow debugging and data readout.
+    // Using a baud rate of 9600 bps.
+    Serial.begin(9600);
+    
+    // Uncomment the line below to set a custom delay between sensor readings (in milliseconds).
+    // dht11.setDelay(500); // Set this to the desired delay. Default is 500ms.
 }
 
 void loop() {
+    int temperature = 0;
+    int humidity = 0;
 
+    // Attempt to read the temperature and humidity values from the DHT11 sensor.
+    int result = dht11.readTemperatureHumidity(temperature, humidity);
 
-  if ((millis() - timer) > 10) {  // print data every 10ms
-    mpu.update();
-    Serial.print("X : ");
-    Serial.print(mpu.getAngleX());
-    Serial.print("\tY : ");
-    Serial.print(mpu.getAngleY());
-    Serial.print("\tZ : ");
-    Serial.println(mpu.getAngleZ());
-    timer = millis();
-  }
+    // Check the results of the readings.
+    // If the reading is successful, print the temperature and humidity values.
+    // If there are errors, print the appropriate error messages.
+    if (result == 0) {
+        Serial.print("Temperature: ");
+        Serial.print(temperature);
+        Serial.print(" °C\tHumidity: ");
+        Serial.print(humidity);
+        Serial.println(" %");
+    } else {
+        // Print error message based on the error code.
+        Serial.println(DHT11::getErrorString(result));
+    }
 }
 ```
 <br />
@@ -96,55 +102,4 @@ void loop() {
 <br />
 <br />
 
-
-## Example Code 2 - MPU6050 paired with an Arduino Leonardo for controlling your mouse
-
- ![Image of MPU6050 Diagram](./Images/MPU6050_circuit.jpeg)
-
-|MPU6050    | Arduino Leonardo        | 
-| ------------- |:-------------:| 
-| GND     | GND | 
-| VCC     | 5V     |   
-| SDA |  SDA   | 
-| SCL | SCL      | 
-
-
-**Note:**
-To run this code, you will need to install the following libraries in your library manager:
-- Adafruit MPU6050 by adafruit
-- Adafruit Unified Sensor
-- Adafruit Bus IO
-- Mouse by Arduino
-  
-Upload the code to your board and see how the mouse on the screen moves according to the position of the IMU. 
-Code reference from edwardthe found at hackster.io
-
-```C++
-#include <Wire.h>
-#include <I2Cdev.h>
-#include <MPU6050.h>
-#include <Mouse.h>
-
-MPU6050 mpu;
-int16_t ax, ay, az, gx, gy, gz;
-int vx, vy;
-
-void setup() {
-  Serial.begin(9600);
-  Wire.begin();
-  Mouse.begin();
-  mpu.initialize();
-  if (!mpu.testConnection()) {
-    while (1);
-  }
-}
-
-void loop() {
-  mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
-  vx = (gx - 400) / 200; // "-400" because the x axis of gyroscope give values about -350 while it's not moving. Change this value if you get something different using the TEST code, chacking if there are values far from zero.
-  vy = -(gz - 200) / 200; // same here about "-200"
-  Mouse.move(vx, vy);
-  delay(20);
-}
-```
 

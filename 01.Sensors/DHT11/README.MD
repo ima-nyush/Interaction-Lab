@@ -50,7 +50,7 @@ Finally, connect the + (VCC) pin to the Arduino’s 5V pin.
 
   ![Image of DHT11 example](./Images/dht11_example.jpg)
 
-This test sketch will print the temperature and relative humidity values to the serial monitor.
+This sketch will print the temperature and relative humidity values to the serial monitor.
 
 
 

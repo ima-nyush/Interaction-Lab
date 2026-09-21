@@ -1,4 +1,4 @@
-# Infrared Distance Sensor
+# IR Distance Sensor 4-30CM - GP2Y0A41SK0F 
 
 ![Image of Infrared Distance Sensor](./Images/IR-proximity-sensor.jpeg)
 

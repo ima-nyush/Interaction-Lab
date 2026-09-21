@@ -54,4 +54,4 @@ void loop() {
 
 ## Additional Information
 
-Since pulseIn() delays the program until it either receives a pulse or times out, it may not be ideal in some situations. For noninterrupt or more "event-driven" based code, try [NewPing by Tim Eckel](https://www.arduino.cc/reference/en/libraries/newping/).
+Since pulseIn() delays the program until it either receives a pulse or times out, it may not be ideal in some situations. For noninterrupt or more "event-driven" based code, try [NewPing by Tim Eckel](https://github.com/eduherminio/NewPing).

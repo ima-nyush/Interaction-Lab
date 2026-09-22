@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+<title id="title">Arduino UNO to MAX7219 8x8 LED matrix wiring diagram</title>
+<desc id="desc">Connect UNO 5V to VCC, GND to GND, D12 to DIN, D10 to CS, and D11 to CLK on the module input side. Leave the output side unconnected. Header positions are simplified.</desc>
+<rect width="1600" height="1000" fill="#f8fafc"/>
+<rect x="48" y="48" width="1504" height="904" rx="24" fill="white" stroke="#dde4ec" stroke-width="2"/>
+
+<text x="96" y="102" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#617187" text-anchor="start">INTERACTION LAB  /  CIRCUIT SETUP</text>
+<text x="96" y="162" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="700" fill="#172b42" text-anchor="start">Arduino UNO + 8×8 LED Matrix</text>
+<text x="96" y="201" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="400" fill="#617187" text-anchor="start">One MAX7219 module · Five jumper wires · USB power</text>
+<rect x="108" y="266" width="417" height="465" rx="22" fill="#087d91"/>
+<circle cx="132" cy="289" r="9" fill="#f8fafc" stroke="#9cd3db" stroke-width="3"/>
+<circle cx="501" cy="289" r="9" fill="#f8fafc" stroke="#9cd3db" stroke-width="3"/>
+<circle cx="132" cy="707" r="9" fill="#f8fafc" stroke="#9cd3db" stroke-width="3"/>
+<circle cx="501" cy="707" r="9" fill="#f8fafc" stroke="#9cd3db" stroke-width="3"/>
+<rect x="82" y="315" width="90" height="103" rx="6" fill="#d6dee6" stroke="#9baaba" stroke-width="2"/>
+<rect x="82" y="335" width="22" height="63" rx="2" fill="#728399"/>
+<text x="111" y="448" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#d7f4f6" text-anchor="start">USB</text>
+<text x="204" y="324" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="700" fill="white" text-anchor="start">ARDUINO</text>
+<text x="204" y="361" font-family="Arial, Helvetica, sans-serif" font-size="37" font-weight="700" fill="white" text-anchor="start">UNO</text>
+<rect x="191" y="413" width="118" height="181" rx="8" fill="#203342"/>
+<rect x="181" y="425" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="309" y="425" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="181" y="443" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="309" y="443" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="181" y="461" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="309" y="461" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="181" y="479" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="309" y="479" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="181" y="497" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="309" y="497" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="181" y="515" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="309" y="515" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="181" y="533" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="309" y="533" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="181" y="551" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="309" y="551" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="181" y="569" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="309" y="569" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="181" y="587" width="10" height="7" rx="1" fill="#c9d5de"/>
+<rect x="309" y="587" width="10" height="7" rx="1" fill="#c9d5de"/>
+<text x="250" y="509" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#e2e9ee" text-anchor="middle">MCU</text>
+<text x="154" y="661" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#e4f7fa" text-anchor="start">USB-powered board</text>
+<text x="154" y="688" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#e4f7fa" text-anchor="start">5V logic</text>
+<rect x="1058" y="266" width="432" height="465" rx="22" fill="#185786"/>
+<circle cx="1081" cy="289" r="9" fill="#f8fafc" stroke="#8eb4d1" stroke-width="3"/>
+<circle cx="1467" cy="289" r="9" fill="#f8fafc" stroke="#8eb4d1" stroke-width="3"/>
+<circle cx="1081" cy="707" r="9" fill="#f8fafc" stroke="#8eb4d1" stroke-width="3"/>
+<circle cx="1467" cy="707" r="9" fill="#f8fafc" stroke="#8eb4d1" stroke-width="3"/>
+<text x="1274" y="317" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="white" text-anchor="middle">MAX7219 MODULE</text>
+<rect x="1183" y="366" width="264" height="264" rx="12" fill="#172331" stroke="#b5c2d0" stroke-width="2"/>
+<circle cx="1203" cy="386" r="11" fill="#526173"/>
+<circle cx="1235" cy="386" r="11" fill="#526173"/>
+<circle cx="1267" cy="386" r="11" fill="#fa735e"/>
+<circle cx="1299" cy="386" r="11" fill="#fa735e"/>
+<circle cx="1331" cy="386" r="11" fill="#fa735e"/>
+<circle cx="1363" cy="386" r="11" fill="#fa735e"/>
+<circle cx="1395" cy="386" r="11" fill="#526173"/>
+<circle cx="1427" cy="386" r="11" fill="#526173"/>
+<circle cx="1203" cy="418" r="11" fill="#526173"/>
+<circle cx="1235" cy="418" r="11" fill="#fa735e"/>
+<circle cx="1267" cy="418" r="11" fill="#526173"/>
+<circle cx="1299" cy="418" r="11" fill="#526173"/>
+<circle cx="1331" cy="418" r="11" fill="#526173"/>
+<circle cx="1363" cy="418" r="11" fill="#526173"/>
+<circle cx="1395" cy="418" r="11" fill="#fa735e"/>
+<circle cx="1427" cy="418" r="11" fill="#526173"/>
+<circle cx="1203" cy="450" r="11" fill="#fa735e"/>
+<circle cx="1235" cy="450" r="11" fill="#526173"/>
+<circle cx="1267" cy="450" r="11" fill="#fa735e"/>
+<circle cx="1299" cy="450" r="11" fill="#526173"/>
+<circle cx="1331" cy="450" r="11" fill="#526173"/>
+<circle cx="1363" cy="450" r="11" fill="#fa735e"/>
+<circle cx="1395" cy="450" r="11" fill="#526173"/>
+<circle cx="1427" cy="450" r="11" fill="#fa735e"/>
+<circle cx="1203" cy="482" r="11" fill="#fa735e"/>
+<circle cx="1235" cy="482" r="11" fill="#526173"/>
+<circle cx="1267" cy="482" r="11" fill="#526173"/>
+<circle cx="1299" cy="482" r="11" fill="#526173"/>
+<circle cx="1331" cy="482" r="11" fill="#526173"/>
+<circle cx="1363" cy="482" r="11" fill="#526173"/>
+<circle cx="1395" cy="482" r="11" fill="#526173"/>
+<circle cx="1427" cy="482" r="11" fill="#fa735e"/>
+<circle cx="1203" cy="514" r="11" fill="#fa735e"/>
+<circle cx="1235" cy="514" r="11" fill="#526173"/>
+<circle cx="1267" cy="514" r="11" fill="#fa735e"/>
+<circle cx="1299" cy="514" r="11" fill="#526173"/>
+<circle cx="1331" cy="514" r="11" fill="#526173"/>
+<circle cx="1363" cy="514" r="11" fill="#fa735e"/>
+<circle cx="1395" cy="514" r="11" fill="#526173"/>
+<circle cx="1427" cy="514" r="11" fill="#fa735e"/>
+<circle cx="1203" cy="546" r="11" fill="#fa735e"/>
+<circle cx="1235" cy="546" r="11" fill="#526173"/>
+<circle cx="1267" cy="546" r="11" fill="#526173"/>
+<circle cx="1299" cy="546" r="11" fill="#fa735e"/>
+<circle cx="1331" cy="546" r="11" fill="#fa735e"/>
+<circle cx="1363" cy="546" r="11" fill="#526173"/>
+<circle cx="1395" cy="546" r="11" fill="#526173"/>
+<circle cx="1427" cy="546" r="11" fill="#fa735e"/>
+<circle cx="1203" cy="578" r="11" fill="#526173"/>
+<circle cx="1235" cy="578" r="11" fill="#fa735e"/>
+<circle cx="1267" cy="578" r="11" fill="#526173"/>
+<circle cx="1299" cy="578" r="11" fill="#526173"/>
+<circle cx="1331" cy="578" r="11" fill="#526173"/>
+<circle cx="1363" cy="578" r="11" fill="#526173"/>
+<circle cx="1395" cy="578" r="11" fill="#fa735e"/>
+<circle cx="1427" cy="578" r="11" fill="#526173"/>
+<circle cx="1203" cy="610" r="11" fill="#526173"/>
+<circle cx="1235" cy="610" r="11" fill="#526173"/>
+<circle cx="1267" cy="610" r="11" fill="#fa735e"/>
+<circle cx="1299" cy="610" r="11" fill="#fa735e"/>
+<circle cx="1331" cy="610" r="11" fill="#fa735e"/>
+<circle cx="1363" cy="610" r="11" fill="#fa735e"/>
+<circle cx="1395" cy="610" r="11" fill="#526173"/>
+<circle cx="1427" cy="610" r="11" fill="#526173"/>
+<text x="1315" y="668" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="middle">8 × 8 LEDs</text>
+<text x="1315" y="698" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#d3e8f7" text-anchor="middle">Driver included</text>
+<text x="1091" y="252" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" fill="#185786" text-anchor="middle">IN</text>
+<rect x="413" y="330" width="91" height="44" rx="6" fill="#055c6c"/>
+<text x="458" y="360" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="white" text-anchor="middle">5V</text>
+<line x1="504" y1="352" x2="1080" y2="352" stroke="#d94c4c" stroke-width="6" stroke-linecap="round"/>
+<circle cx="512" cy="352" r="7" fill="white" stroke="#d94c4c" stroke-width="3"/>
+<circle cx="1080" cy="352" r="7" fill="white" stroke="#d94c4c" stroke-width="3"/>
+<text x="791" y="337" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#d94c4c" text-anchor="middle">5V → VCC  ·  5V power</text>
+<text x="1095" y="360" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="start">VCC</text>
+<rect x="413" y="400" width="91" height="44" rx="6" fill="#055c6c"/>
+<text x="458" y="430" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="white" text-anchor="middle">GND</text>
+<line x1="504" y1="422" x2="1080" y2="422" stroke="#39485b" stroke-width="6" stroke-linecap="round"/>
+<circle cx="512" cy="422" r="7" fill="white" stroke="#39485b" stroke-width="3"/>
+<circle cx="1080" cy="422" r="7" fill="white" stroke="#39485b" stroke-width="3"/>
+<text x="791" y="407" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#39485b" text-anchor="middle">GND → GND  ·  Common ground</text>
+<text x="1095" y="430" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="start">GND</text>
+<rect x="413" y="470" width="91" height="44" rx="6" fill="#055c6c"/>
+<text x="458" y="500" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="white" text-anchor="middle">D12</text>
+<line x1="504" y1="492" x2="1080" y2="492" stroke="#008d89" stroke-width="6" stroke-linecap="round"/>
+<circle cx="512" cy="492" r="7" fill="white" stroke="#008d89" stroke-width="3"/>
+<circle cx="1080" cy="492" r="7" fill="white" stroke="#008d89" stroke-width="3"/>
+<text x="791" y="477" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#008d89" text-anchor="middle">D12 → DIN  ·  Data</text>
+<text x="1095" y="500" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="start">DIN</text>
+<rect x="413" y="540" width="91" height="44" rx="6" fill="#055c6c"/>
+<text x="458" y="570" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="white" text-anchor="middle">D10</text>
+<line x1="504" y1="562" x2="1080" y2="562" stroke="#c77a17" stroke-width="6" stroke-linecap="round"/>
+<circle cx="512" cy="562" r="7" fill="white" stroke="#c77a17" stroke-width="3"/>
+<circle cx="1080" cy="562" r="7" fill="white" stroke="#c77a17" stroke-width="3"/>
+<text x="791" y="547" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#c77a17" text-anchor="middle">D10 → CS  ·  Select / load</text>
+<text x="1095" y="570" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="start">CS</text>
+<rect x="413" y="610" width="91" height="44" rx="6" fill="#055c6c"/>
+<text x="458" y="640" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="white" text-anchor="middle">D11</text>
+<line x1="504" y1="632" x2="1080" y2="632" stroke="#397bc7" stroke-width="6" stroke-linecap="round"/>
+<circle cx="512" cy="632" r="7" fill="white" stroke="#397bc7" stroke-width="3"/>
+<circle cx="1080" cy="632" r="7" fill="white" stroke="#397bc7" stroke-width="3"/>
+<text x="791" y="617" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#397bc7" text-anchor="middle">D11 → CLK  ·  Clock</text>
+<text x="1095" y="640" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="white" text-anchor="start">CLK</text>
+<text x="1275" y="768" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="400" fill="#617187" text-anchor="middle">OUT / DOUT: leave unconnected</text>
+<rect x="96" y="806" width="1408" height="96" rx="12" fill="#f0f5f9"/>
+<text x="122" y="842" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" fill="#172b42" text-anchor="start">Connect to the IN side. Disconnect USB before changing wires.</text>
+<text x="122" y="878" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="400" fill="#617187" text-anchor="start">Header positions are simplified. Follow printed pin labels; wire colors are illustrative.</text>
+</svg>

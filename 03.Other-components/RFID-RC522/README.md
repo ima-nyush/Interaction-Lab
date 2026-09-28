@@ -93,7 +93,8 @@ The Uno's I2C pins are **A4 (SDA)** and **A5 (SCL)**. They're also available on 
 
 The library resets the module through software, so RST isn't needed. If the module doesn't respond in Step 3, connect RST to 3.3V.
 
-<img width="625" height="425" alt="RFID-RC522" src="https://github.com/user-attachments/assets/230b4ae1-df72-476c-b994-753bfdab924c" />
+<img width="1251" height="969" alt="RFID-RC522" src="https://github.com/user-attachments/assets/ad884356-7156-433d-8742-2dd3480bdb78" />
+
 
 ---
 

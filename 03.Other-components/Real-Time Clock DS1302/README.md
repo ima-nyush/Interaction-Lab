@@ -57,6 +57,7 @@ The DS1302 solves this. It counts seconds, minutes, hours, day, month, and year 
 > [!NOTE]
 > The module's **RST** pin is not connected to the Arduino's RESET pin. Despite the name, it's a normal data pin and goes to a digital pin on the Uno.
 
+![NL-16 wiring diagram](UNO_DS1302_wiring.png)
 ---
 
 ## Step 1: Install the library

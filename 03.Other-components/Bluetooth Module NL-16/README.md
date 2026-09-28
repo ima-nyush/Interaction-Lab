@@ -61,6 +61,8 @@ A step-by-step guide to wiring, configuring, and using the NULLLAB NL-16 BLE mod
 | GND | Ground |
 | +5V | Power |
 
+![NL-16 wiring diagram](bluetooth_nl16.jpg)
+
 ### BLE IDs
 
 You'll need these when connecting from a phone or browser.

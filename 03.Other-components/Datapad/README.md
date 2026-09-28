@@ -72,8 +72,6 @@ Hold the keypad face up with the ribbon cable at the bottom. The 8 pins, left to
 > [!NOTE]
 > The pins are usually unlabeled. The order above is the most common, but some keypads differ. If the wrong keys show up after wiring, see [Troubleshooting](#troubleshooting).
 
-<img width="218" height="447" alt="UNO_4x4Datapad" src="https://github.com/user-attachments/assets/be5cb8d9-29a4-4762-8b0d-82a76d6adffa" />
-
 ---
 
 ## Step 1: Install the library
@@ -105,6 +103,7 @@ The keypad needs no power or ground wire. The Arduino's pins supply everything.
 > [!IMPORTANT]
 > Don't use pins D0 and D1. They're used for USB communication, and using them will block uploads and the Serial Monitor.
 
+<img width="218" height="447" alt="UNO_4x4Datapad" src="https://github.com/user-attachments/assets/be5cb8d9-29a4-4762-8b0d-82a76d6adffa" />
 ---
 
 ## Step 3: Read key presses

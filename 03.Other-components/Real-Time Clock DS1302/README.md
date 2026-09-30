@@ -2,6 +2,7 @@
 
 The Arduino has no built-in clock. It only knows how long it has been running since it was last powered on or reset. When it loses power, that count starts over. The DS1302 counts seconds, minutes, hours, day, month, and year on its own, powered by its coin battery. 
 
+![DS1302](DS1302.png)
 
 ## What you need
 

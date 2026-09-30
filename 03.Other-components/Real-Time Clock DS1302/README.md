@@ -35,54 +35,32 @@ There are several DS1302 libraries. This guide uses Rtc by Makuna because it's a
 | DAT | D4 |
 | RST | D2 |
 
-![NL-16 wiring diagram](UNO_DS1302_wiring.png)
+![DS1302 wiring diagram](UNO_DS1302_wiring.png)
+
 ---
 
 ## Step 3: Set and read the time
 
-This sketch does two things:
+When you upload this sketch, it sets the RTC to your computer's time (if the RTC is behind). After that, it prints the time to the Serial Monitor once per second.
 
-1. **The first time it runs**, it sets the RTC to the time your computer compiled the sketch.
-2. **Every time after**, it reads the time from the RTC and prints it once per second.
-
-
+Open the Serial Monitor (**Tools → Serial Monitor**) at **9600 baud** to see it.
 
 ```cpp
 #include <ThreeWire.h>
 #include <RtcDS1302.h>
 
-// Pin order: DAT, CLK, RST
-ThreeWire myWire(4, 5, 2);
+ThreeWire myWire(4, 5, 2);  // DAT, CLK, RST
 RtcDS1302<ThreeWire> Rtc(myWire);
 
 void setup() {
   Serial.begin(9600);
   Rtc.Begin();
+  Rtc.SetIsWriteProtected(false);
+  Rtc.SetIsRunning(true);
 
-  // Date and time this sketch was compiled on your computer
+  // Set the clock to your computer's time if the clock is behind
   RtcDateTime compiled = RtcDateTime(__DATE__, __TIME__);
-
-  // Allow writing to the RTC
-  if (Rtc.GetIsWriteProtected()) {
-    Rtc.SetIsWriteProtected(false);
-  }
-
-  // Start the clock if it's stopped
-  if (!Rtc.GetIsRunning()) {
-    Serial.println("RTC was stopped. Starting it.");
-    Rtc.SetIsRunning(true);
-  }
-
-  // Set the time if the RTC has no valid time (first use or dead battery)
-  if (!Rtc.IsDateTimeValid()) {
-    Serial.println("RTC time invalid. Setting to compile time.");
-    Rtc.SetDateTime(compiled);
-  }
-
-  // Set the time if the RTC is behind the compile time
-  RtcDateTime now = Rtc.GetDateTime();
-  if (now < compiled) {
-    Serial.println("RTC is behind. Updating to compile time.");
+  if (Rtc.GetDateTime() < compiled) {
     Rtc.SetDateTime(compiled);
   }
 }
@@ -90,24 +68,17 @@ void setup() {
 void loop() {
   RtcDateTime now = Rtc.GetDateTime();
 
-  if (!now.IsValid()) {
-    Serial.println("RTC lost the time. Check the battery and wiring.");
-  } else {
-    printDateTime(now);
-  }
+  Serial.print(now.Hour());
+  Serial.print(":");
+  Serial.print(now.Minute());
+  Serial.print(":");
+  Serial.println(now.Second());
 
   delay(1000);
 }
-
-// Prints the time as YYYY-MM-DD HH:MM:SS
-void printDateTime(const RtcDateTime& dt) {
-  char text[20];
-  snprintf(text, sizeof(text), "%04u-%02u-%02u %02u:%02u:%02u",
-           dt.Year(), dt.Month(), dt.Day(),
-           dt.Hour(), dt.Minute(), dt.Second());
-  Serial.println(text);
-}
 ```
+
+The time prints without leading zeros, so 9:05:03 shows as `9:5:3`.
 
 ---
 
@@ -153,10 +124,9 @@ Replace the LED with a relay, buzzer, or servo to build timers, alarms, or sched
 
 | Problem | Fix |
 |---|---|
-| Time shows `2000-01-01` or random numbers | Check wiring. Confirm the pin numbers in `ThreeWire myWire(4, 5, 2)` match your wires (order is DAT, CLK, RST). |
+| Time shows `0:0:0` or random numbers | Check wiring. Confirm the pin numbers in `ThreeWire myWire(4, 5, 2)` match your wires (order is DAT, CLK, RST). |
 | Time doesn't change (stuck on one second) | The clock isn't running. Make sure `Rtc.SetIsRunning(true)` runs in `setup()`. |
-| Time resets every time the Arduino restarts | No battery, dead battery, or battery inserted upside down. Or the Step 4 sketch is still on the Uno. |
-| "RTC lost the time" message | Battery is dead or missing. Replace it and re-upload the Step 3 sketch. |
+| Time is wrong after the Arduino was unplugged | No battery, dead battery, or battery inserted upside down. Replace it and re-upload the Step 3 sketch. |
 | Time is off by a few minutes after a few weeks | Normal. The DS1302 drifts over time. Re-set it, or switch to a DS3231 module if you need higher accuracy. |
 | Compile error: `RtcDS1302.h: No such file` | The library isn't installed. Redo Step 1. |
 

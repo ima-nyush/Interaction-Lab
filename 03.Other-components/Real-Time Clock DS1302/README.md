@@ -1,10 +1,8 @@
 # DS1302 Real-Time Clock 
 
-The Arduino has no built-in clock. It only knows how long it has been running since it was last powered on or reset. When it loses power, that count starts over.
+The Arduino has no built-in clock. It only knows how long it has been running since it was last powered on or reset. When it loses power, that count starts over. The DS1302 counts seconds, minutes, hours, day, month, and year on its own, powered by its coin battery. 
 
-The DS1302 counts seconds, minutes, hours, day, month, and year on its own, powered by its coin battery. 
-
----
+![DS1302](DS1302.png)
 
 ## What you need
 
@@ -23,7 +21,7 @@ The DS1302 counts seconds, minutes, hours, day, month, and year on its own, powe
 
 There are several DS1302 libraries. This guide uses Rtc by Makuna because it's actively maintained and its example sketch uses the same wiring as this guide.
 
----
+
 
 ## Step 2: Wire the module
 
@@ -37,7 +35,7 @@ There are several DS1302 libraries. This guide uses Rtc by Makuna because it's a
 
 ![DS1302 wiring diagram](UNO_DS1302_wiring.png)
 
----
+
 
 ## Step 3: Set and read the time
 
@@ -80,7 +78,6 @@ void loop() {
 
 The time prints without leading zeros, so 9:05:03 shows as `9:5:3`.
 
----
 
 ## Step 4: Use the time in a project
 
@@ -110,7 +107,7 @@ Add this to the end of `loop()` in the Step 3 sketch:
 | `now.Second()` | 0–59 |
 | `now.DayOfWeek()` | 0–6 (0 = Sunday) |
 
----
+
 
 ## Troubleshooting
 
@@ -122,7 +119,7 @@ Add this to the end of `loop()` in the Step 3 sketch:
 | Time is off by a few minutes after a few weeks | Normal. The DS1302 drifts over time. Re-set it, or switch to a DS3231 module if you need higher accuracy. |
 | Compile error: `RtcDS1302.h: No such file` | The library isn't installed. Redo Step 1. |
 
----
+
 
 ## References
 

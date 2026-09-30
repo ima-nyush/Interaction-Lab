@@ -98,14 +98,6 @@ Add this to the end of `loop()` in the Step 3 sketch:
   }
 ```
 
-And add this line inside `setup()`:
-
-```cpp
-  pinMode(13, OUTPUT);
-```
-
-Replace the LED with a relay, buzzer, or servo to build timers, alarms, or schedules.
-
 ### Available time values
 
 | Function | Returns |

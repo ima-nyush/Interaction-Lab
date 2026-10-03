@@ -1,18 +1,6 @@
 # 4x4 Keypad with Arduino Uno
 
-A step-by-step guide to wiring a 4x4 membrane keypad to an Arduino Uno, reading key presses, and building a simple code lock.
-
-## Contents
-
-- [What you need](#what-you-need)
-- [Key terms](#key-terms)
-- [About the 4x4 keypad](#about-the-4x4-keypad)
-- [Step 1: Install the library](#step-1-install-the-library)
-- [Step 2: Wire the keypad](#step-2-wire-the-keypad)
-- [Step 3: Read key presses](#step-3-read-key-presses)
-- [Step 4: Build a code lock](#step-4-build-a-code-lock)
-- [Troubleshooting](#troubleshooting)
-- [References](#references)
+A 4x4 keypad is a 16-button grid that connects to an Arduino Uno with only 8 wires (4 rows, 4 columns). The Uno scans the rows and columns to tell which key is pressed, which makes it useful for number entry, menus, and code locks.
 
 ---
 
@@ -24,17 +12,6 @@ A step-by-step guide to wiring a 4x4 membrane keypad to an Arduino Uno, reading 
 - Arduino IDE
 
 No resistors are needed.
-
----
-
-## Key terms
-
-| Term | Meaning |
-|---|---|
-| **Matrix** | A grid of rows and columns. The keypad's buttons are wired as a grid instead of each button having its own wire. |
-| **Scanning** | Checking each row and column quickly, over and over, to find which key is pressed. The library does this for you. |
-| **Library** | Pre-written code you install so you don't have to write the scanning logic yourself. |
-| **Serial Monitor** | The window in the Arduino IDE that shows text sent from the Arduino. |
 
 ---
 
@@ -145,29 +122,6 @@ void loop() {
   }
 }
 ```
-
-### 3.2 Check the output
-
-Open **Tools → Serial Monitor** and set the baud rate to **9600**. Press keys on the keypad:
-
-```
-Press a key
-Pressed: 1
-Pressed: A
-Pressed: #
-```
-
-Press all 16 keys and confirm each one prints the correct character before moving on.
-
-### 3.3 How the code works
-
-| Part | What it does |
-|---|---|
-| `keys[ROWS][COLS]` | A map of which character sits at each row and column. Change these to relabel keys. |
-| `rowPins` / `colPins` | Which Uno pins the rows and columns are wired to. |
-| `keypad.getKey()` | Checks for a new key press. Returns the character, or `0` (nothing) if no key was pressed. Each press is reported once, even if you hold the key. |
-
----
 
 ## Step 4: Build a code lock
 

@@ -1,21 +1,6 @@
 # RFID RC522 (I2C) with Arduino Uno
 
-A step-by-step guide to wiring an I2C version of the RC522 RFID reader to an Arduino Uno, reading card IDs, and building a simple card-based access check.
-
-## Contents
-
-- [What you need](#what-you-need)
-- [Key terms](#key-terms)
-- [About the RC522 (I2C)](#about-the-rc522-i2c)
-- [Step 1: Install the library](#step-1-install-the-library)
-- [Step 2: Wire the module](#step-2-wire-the-module)
-- [Step 3: Find the I2C address](#step-3-find-the-i2c-address)
-- [Step 4: Read a card](#step-4-read-a-card)
-- [Step 5: Allow only specific cards](#step-5-allow-only-specific-cards)
-- [Troubleshooting](#troubleshooting)
-- [References](#references)
-
----
+The RC522 is an RFID reader that reads 13.56 MHz cards and key fobs from a few centimeters away. Each card has a unique ID, so an Arduino can use it for things like access control, attendance tracking, or triggering an event when a specific card is scanned.
 
 ## What you need
 
@@ -26,25 +11,6 @@ A step-by-step guide to wiring an I2C version of the RC522 RFID reader to an Ard
 - Arduino IDE
 
 ---
-
-## Key terms
-
-| Term | Meaning |
-|---|---|
-| **RFID** | Radio-Frequency Identification. The reader sends out a radio signal; a card held near it answers with its ID. No battery in the card. |
-| **Tag / card** | The card or key fob you scan. Also called a PICC in the library code. |
-| **UID** | The card's ID number, written in hexadecimal (e.g. `A1 B2 C3 D4`). Usually 4 or 7 bytes. |
-| **I2C** | A way for devices to talk using 2 wires: SDA (data) and SCL (clock). Many devices can share the same 2 wires. |
-| **I2C address** | Each I2C device has a number (e.g. `0x28`) so the Arduino knows which device it's talking to. |
-| **Hexadecimal (hex)** | A way of writing numbers using 0–9 and A–F. `0x28` means 28 in hex (40 in normal numbers). |
-
----
-
-## About the RC522 (I2C)
-
-The RC522 reads and writes 13.56 MHz RFID cards (MIFARE type) from about 1–5 cm away.
-
-The RC522 chip can use SPI, I2C, or UART, but each module board is wired for only one. This guide is for boards wired for **I2C**.
 
 ### Check which module you have
 
@@ -190,38 +156,6 @@ void loop() {
 }
 ```
 
-### 4.2 Check the output
-
-Open the Serial Monitor at **9600**. You should see the firmware version first:
-
-```
-Firmware Version: 0x92 = v2.0
-Scan a card
-```
-
-Hold a card flat against the reader. You should see:
-
-```
-Card UID: A1 B2 C3 D4
-```
-
-Scan each of your cards and write down their UIDs. You'll need them in Step 5.
-
-If you see `WARNING: Communication failure` instead of a firmware version, see [Troubleshooting](#troubleshooting).
-
-### 4.3 How the code works
-
-| Part | What it does |
-|---|---|
-| `MFRC522DriverI2C driver{...}` | Tells the library to use I2C at your module's address. |
-| `PICC_IsNewCardPresent()` | Checks if a card is near the reader. |
-| `PICC_ReadCardSerial()` | Reads the card's UID. |
-| `mfrc522.uid.uidByte[]` | The UID, stored as a list of bytes. |
-| `mfrc522.uid.size` | How many bytes are in the UID (usually 4 or 7). |
-| `PICC_HaltA()` | Tells the card to stop responding until it's removed and scanned again. |
-
----
-
 ## Step 5: Allow only specific cards
 
 This sketch checks each scanned card against a list. Allowed cards turn on the built-in LED (pin 13) for 2 seconds.
@@ -298,19 +232,6 @@ bool isAllowed(String uid) {
   return false;
 }
 ```
-
-### 5.2 Test it
-
-1. Open the Serial Monitor at 9600.
-2. Scan an allowed card. The Serial Monitor shows `Access granted` and the LED turns on for 2 seconds.
-3. Scan a card not in the list. The Serial Monitor shows `Access denied`.
-
-Replace the LED with a servo, relay, or buzzer to build a lock, a door chime, or a card-triggered event.
-
-> [!NOTE]
-> Card UIDs can be copied with cheap tools. This is fine for projects and installations, but don't use UID checks to protect anything valuable.
-
----
 
 ## Troubleshooting
 

@@ -1,26 +1,9 @@
 # NL-16 Bluetooth Module with Arduino Uno
 
-A step-by-step guide to wiring, configuring, and using the NULLLAB NL-16 BLE module with an Arduino Uno.
-
-> [!NOTE]
-> NULLLAB has not published a standalone NL-16 datasheet. The defaults and AT commands here come from the docs for NULLLAB's BLE-Uno board, which uses the same chip (CH571F) and firmware features. Confirm your module's settings with `AT+ALL` (Step 2).
-
-## Contents
-
-- [What you need](#what-you-need)
-- [Key terms](#key-terms)
-- [About the NL-16](#about-the-nl-16)
-- [Step 1: Choose your setup](#step-1-choose-your-setup)
-- [Step 2: Configure the module](#step-2-configure-the-module)
-- [Step 3: Wire for a project (Setup A)](#step-3-wire-for-a-project-setup-a)
-- [Step 4: Control an LED from your phone](#step-4-control-an-led-from-your-phone)
-- [Step 5: Connect from a web browser (optional)](#step-5-connect-from-a-web-browser-optional)
-- [Step 6: Upload code wirelessly (Setup B)](#step-6-upload-code-wirelessly-setup-b)
-- [Step 7: Connect two NL-16 modules (optional)](#step-7-connect-two-nl-16-modules-optional)
-- [Troubleshooting](#troubleshooting)
-- [References](#references)
-
----
+- Chip: CH571F, Bluetooth 4.2 **BLE only**
+- Works with iOS and Android phones through a BLE app
+- **Does not** work with Bluetooth Classic devices (HC-05, HC-06, older Bluetooth 2.0 gear)
+- **Cannot** be paired from your phone's Bluetooth settings menu. Always connect through a BLE app.
 
 ## What you need
 
@@ -29,27 +12,6 @@ A step-by-step guide to wiring, configuring, and using the NULLLAB NL-16 BLE mod
 - 4–5 jumper wires
 - Arduino IDE (1.8.8 or newer)
 - A phone with a BLE app: **LightBlue** or **nRF Connect** (both free, iOS and Android)
-
----
-
-## Key terms
-
-| Term | Meaning |
-|---|---|
-| **BLE** | Bluetooth Low Energy. A different type of Bluetooth from the "classic" kind used by headphones and the HC-05. |
-| **TX / RX** | Transmit / Receive. Data leaves a device on TX and arrives on RX, so one device's TX connects to the other's RX. |
-| **Baud rate** | Serial communication speed. Both sides must use the same value or you get garbage text. |
-| **AT command** | A text command sent over serial to change module settings (name, speed, role). |
-| **Service / Characteristic** | How BLE organizes data. Think of a service as a folder and a characteristic as a file inside it that you read from or write to. |
-
----
-
-## About the NL-16
-
-- Chip: CH571F, Bluetooth 4.2 **BLE only**
-- Works with iOS and Android phones through a BLE app
-- **Does not** work with Bluetooth Classic devices (HC-05, HC-06, older Bluetooth 2.0 gear)
-- **Cannot** be paired from your phone's Bluetooth settings menu. Always connect through a BLE app.
 
 ### Pins
 
@@ -299,18 +261,6 @@ In your sketch, use `Serial` (not SoftwareSerial) to talk to the module in this 
 
 ---
 
-## Step 7: Connect two NL-16 modules (optional)
-
-One module stays in slave mode (the default). Configure the other as master using the Step 2 setup:
-
-1. `AT+ROLE=0` — set to master
-2. `AT+SCAN` — list nearby devices with an index number
-3. `AT+CONN=1` — connect by index, **or** `AT+CON=xx:xx:xx:xx:xx:xx` to connect by MAC address
-4. `AT+AUTOCON=1` — reconnect automatically on power-up (takes effect after restart)
-
-Once connected, text printed to one module comes out of the other module's TXD.
-
----
 
 ## Troubleshooting
 

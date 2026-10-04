@@ -2,6 +2,8 @@
 
 The RC522 is an RFID reader that reads 13.56 MHz cards and key fobs from a few centimeters away. Each card has a unique ID, so an Arduino can use it for things like access control, attendance tracking, or triggering an event when a specific card is scanned.
 
+<img width="450" height="362" alt="image" src="https://github.com/user-attachments/assets/04056584-a3cb-4e37-b990-dd0cfbde0ae4" />
+
 ## What you need
 
 - Arduino Uno and USB cable

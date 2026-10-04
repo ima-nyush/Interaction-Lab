@@ -1,8 +1,8 @@
 # 4x4 Keypad with Arduino Uno
 
 A 4x4 keypad is a 16-button grid that connects to an Arduino Uno with 8 wires (4 rows, 4 columns). The Uno scans the rows and columns to tell which key is pressed, which makes it useful for number entry, menus, and code locks.
-<img width="447" height="447" alt="image" src="https://github.com/user-attachments/assets/c4a99c86-4f5a-4431-9fd8-8e464301f6f2" />
 
+<img width="447" height="447" alt="image" src="https://github.com/user-attachments/assets/c4a99c86-4f5a-4431-9fd8-8e464301f6f2" />
 
 ## What you need
 
@@ -57,7 +57,7 @@ Hold the keypad face up with the cable at the bottom. Count the pins from left t
 
 No power or ground wire is needed.
 
-<img width="795" height="1509" alt="image" src="https://github.com/user-attachments/assets/85e5d0a2-7c29-457e-b86f-58b1a8090982" />
+<img width="403" height="736" alt="datapad" src="https://github.com/user-attachments/assets/681da92f-3078-4f99-9a14-23fbd7602b5a" />
 
 ---
 

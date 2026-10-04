@@ -1,120 +1,21 @@
 # NL-16 Bluetooth Module with Arduino Uno
 
-- Chip: CH571F, Bluetooth 4.2 **BLE only**
-- Works with iOS and Android phones through a BLE app
-- **Does not** work with Bluetooth Classic devices (HC-05, HC-06, older Bluetooth 2.0 gear)
-- **Cannot** be paired from your phone's Bluetooth settings menu. Always connect through a BLE app.
+The NL-16 is a Bluetooth Low Energy (BLE) module that lets your phone send and receive messages from an Arduino. You can use it to control things wirelessly or send sensor data to your phone.
+
+> [!NOTE]
+> The NL-16 is **BLE only**. You can't pair it from your phone's Bluetooth settings. Always connect through a BLE app.
 
 ## What you need
 
 - Arduino Uno and USB cable
 - NL-16 module
-- 4–5 jumper wires
-- Arduino IDE (1.8.8 or newer)
-- A phone with a BLE app: **LightBlue** or **nRF Connect** (both free, iOS and Android)
-
-### Pins
-
-| Pin | Function |
-|---|---|
-| STAT/D-RST | Connection status output; also used to reset the Arduino for wireless upload |
-| RXD | Receives data (connect to Arduino TX) |
-| TXD | Sends data (connect to Arduino RX) |
-| GND | Ground |
-| +5V | Power |
-
-![NL-16 wiring diagram](bluetooth_nl16.jpg)
-
-### BLE IDs
-
-You'll need these when connecting from a phone or browser.
-
-| Item | UUID | Use |
-|---|---|---|
-| Service | `FFE0` | The module's main service |
-| Data characteristic | `FFE1` | Send/receive your data |
-| AT characteristic | `FFE2` | Send AT commands over Bluetooth |
+- 4 jumper wires
+- Arduino IDE
+- A phone with the free **LightBlue** app (iOS or Android)
 
 ---
 
-## Step 1: Choose your setup
-
-There are two ways to wire the module. Pick based on what you're doing.
-
-| Setup | Pins | Use it for |
-|---|---|---|
-| **A. SoftwareSerial** | D2, D3 | Most projects. Keeps USB Serial Monitor free for debugging. |
-| **B. Hardware serial** | D0, D1 | Wireless code upload (Step 6). |
-
-Start with Setup A. First, configure the module (Step 2).
-
----
-
-## Step 2: Configure the module
-
-You'll use the Uno as a USB-to-serial adapter so your computer can talk to the module directly.
-
-### 2.1 Upload an empty sketch
-
-Upload this to the Uno. It stops the Uno's own chip from using the serial pins.
-
-```cpp
-void setup() {}
-void loop() {}
-```
-
-### 2.2 Wire for configuration
-
-| NL-16 | Uno |
-|---|---|
-| +5V | 5V |
-| GND | GND |
-| TXD | pin 1 (TX) |
-| RXD | pin 0 (RX) |
-
-This looks reversed from normal wiring. It's correct: in this mode the computer's signals pass through the Uno's pins, so TX goes to TX.
-
-### 2.3 Open Serial Monitor
-
-1. Tools → Serial Monitor
-2. Set baud rate to **115200** (the default). If you see nothing, try 9600.
-3. Set line ending to **Both NL & CR**.
-
-### 2.4 Test it
-
-Type `AT` and press Enter. You should see `OK`.
-
-Then type `AT+ALL` to see all current settings.
-
-### 2.5 AT command rules
-
-- Every command must end with a line break (the "Both NL & CR" setting handles this).
-- Commands are **case-sensitive**. Use uppercase as shown.
-- Commands only work when **nothing is connected over Bluetooth**. Disconnect your phone first.
-
-### 2.6 Common commands
-
-| Command | What it does |
-|---|---|
-| `AT` | Test connection. Replies `OK`. |
-| `AT+ALL` | Show all settings |
-| `AT+NAME=MyDevice` | Change the name shown when scanning |
-| `AT+BAUD=0` | Set baud rate (0=9600, 1=19200, 2=38400, 3=57600, 4=115200) |
-| `AT+MAC` | Show the module's address |
-| `AT+ROLE=1` | Slave mode (default; phone connects to module) |
-| `AT+ROLE=0` | Master mode (module connects to another module) |
-| `AT+SETTING=DEFAULT` | Factory reset |
-
-### 2.7 Set the baud rate
-
-- **For Setup A (SoftwareSerial):** send `AT+BAUD=0` to set 9600. SoftwareSerial is unreliable at 115200.
-- **For Setup B (wireless upload):** leave it at 115200.
-
-After changing the baud rate, switch the Serial Monitor to the new rate.
-
----
-
-## Step 3: Wire for a project (Setup A)
+## Step 1: Wire the module
 
 | NL-16 | Uno |
 |---|---|
@@ -123,82 +24,148 @@ After changing the baud rate, switch the Serial Monitor to the new rate.
 | TXD | D2 |
 | RXD | D3 |
 
-> [!WARNING]
-> The CH571F chip runs at 3.3V. If your module has no visible voltage regulator or level-shifting parts, add a voltage divider on the D3 → RXD wire (1kΩ from D3 to RXD, 2kΩ from RXD to GND). It costs nothing and protects the module.
+Leave the STAT/D-RST pin unconnected.
+
+<img width="3087" height="1637" alt="Uno_NL16_Bluetooth" src="https://github.com/user-attachments/assets/3ee98b45-abdd-4ef5-b805-8f9730829bb4" />
 
 ---
 
-## Step 4: Control an LED from your phone
+## Step 2: Set up the module (once)
 
-### 4.1 Upload the sketch
+The module comes set to a speed the Uno can't read reliably. This sketch changes it to 9600 and gives your module a name. You only need to run it once per module.
 
-This turns the Uno's built-in LED (pin 13) on and off when you send `on` or `off`.
+1. Change `BLE-01` to a unique name, so you can find your module when others are nearby.
+2. Upload the sketch.
+3. Open **Tools → Serial Monitor** and set it to **9600**.
 
 ```cpp
 #include <SoftwareSerial.h>
 
-SoftwareSerial ble(2, 3);  // RX = D2 (from module TXD), TX = D3 (to module RXD)
-const int LED = 13;
-String buf;
-unsigned long lastByte = 0;
+SoftwareSerial ble(2, 3);  // D2 = from module TXD, D3 = to module RXD
+
+String deviceName = "BLE-01";  // Give your module a unique name
 
 void setup() {
-  pinMode(LED, OUTPUT);
-  Serial.begin(9600);  // Serial Monitor
-  ble.begin(9600);     // Module; must match AT+BAUD
+  Serial.begin(9600);
+
+  // Change the module's speed from 115200 to 9600
+  ble.begin(115200);
+  ble.print("AT+BAUD=0\r\n");
+  delay(500);
+  ble.end();
+
+  // Talk to the module at the new speed
+  ble.begin(9600);
+  sendCommand("AT");
+  sendCommand("AT+NAME=" + deviceName);
+}
+
+void loop() {}
+
+void sendCommand(String command) {
+  ble.print(command + "\r\n");
+  delay(300);
+  Serial.print(command + " -> ");
+  while (ble.available()) {
+    Serial.write(ble.read());
+  }
+  Serial.println();
+}
+```
+
+You should see `OK` after each command:
+
+```
+AT -> OK
+AT+NAME=BLE-01 -> OK
+```
+
+If you see nothing after the arrows, unplug the USB cable, plug it back in, and open the Serial Monitor again.
+
+After it works, unplug and replug the USB cable so the new name takes effect.
+
+---
+
+## Step 3: Upload the LED sketch
+
+This sketch turns the built-in LED on when your phone sends `1` and off when it sends `0`.
+
+```cpp
+#include <SoftwareSerial.h>
+
+SoftwareSerial ble(2, 3);  // D2 = from module TXD, D3 = to module RXD
+
+void setup() {
+  Serial.begin(9600);
+  ble.begin(9600);
+  pinMode(13, OUTPUT);
   Serial.println("Ready");
 }
 
 void loop() {
-  // Collect incoming characters
-  while (ble.available()) {
-    buf += (char)ble.read();
-    lastByte = millis();
-  }
+  if (ble.available()) {
+    char c = ble.read();   // Read one character from the phone
+    Serial.write(c);       // Show it in the Serial Monitor
 
-  // Phone apps often don't send a newline,
-  // so treat 20 ms of no data as the end of a message
-  if (buf.length() && millis() - lastByte > 20) {
-    buf.trim();
-    Serial.print("Got: ");
-    Serial.println(buf);
-
-    if (buf == "on") {
-      digitalWrite(LED, HIGH);
-      ble.println("LED on");
-    } else if (buf == "off") {
-      digitalWrite(LED, LOW);
+    if (c == '1') {
+      digitalWrite(13, HIGH);
+      ble.println("LED on");   // Send a reply to the phone
+    }
+    if (c == '0') {
+      digitalWrite(13, LOW);
       ble.println("LED off");
     }
-
-    buf = "";
   }
 }
 ```
 
-### 4.2 Connect from your phone
+---
 
-1. Open **LightBlue** or **nRF Connect**.
-2. On Android, turn on Location and allow the app location access. Android requires this for BLE scanning.
-3. Scan and tap your module to connect.
-4. Open service `FFE0`, then characteristic `FFE1`.
-5. Turn on **Notify** (or "Subscribe") to receive replies.
-6. Choose **Write**, set format to **UTF-8 / Text**, and send `on`.
+## Step 4: Connect from your phone
 
-The LED turns on, the Serial Monitor shows `Got: on`, and your phone receives `LED on`. Send `off` to turn it off.
+1. Open **LightBlue**. On Android, turn on Location and allow the app to use it.
+2. Find your module's name in the list and tap it.
+3. Tap the service **FFE0**, then the characteristic **FFE1**.
+4. Tap **Listen for notifications** (or **Subscribe**) to see replies.
+5. Change the format to **UTF-8 String**.
+6. Tap **Write new value**, type `1`, and send it.
 
-### 4.3 Sending data to the phone
+The LED turns on and your phone shows `LED on`. Send `0` to turn it off.
 
-Anything you `ble.print()` shows up on the phone (with Notify turned on). Two limits:
-
-- Keep each message **under 64 bytes**. Longer messages can lose data.
-- Wait **at least 100 ms** between messages.
+To send other data to your phone (like a sensor reading), use `ble.println()` in your sketch. Keep messages short and wait at least 100 ms between them.
 
 ---
 
-## Step 5: Connect from a web browser (optional)
+## Troubleshooting
 
-Chrome supports Web Bluetooth, so a web page (including a p5.js sketch) can talk to the module.
+| Problem | Fix |
+|---|---|
+| Step 2 shows nothing after the arrows | Unplug and replug the USB cable, then reopen the Serial Monitor. Check TXD → D2 and RXD → D3. |
+| Phone can't find the module | Use the LightBlue app, not phone Settings. On Android, turn on Location. |
+| LED doesn't respond | Check you're writing to **FFE1** as **UTF-8 String**. Check the phone is connected. |
+| Garbled text in Serial Monitor | Set the Serial Monitor to 9600. Run Step 2 again. |
+
+---
+
+<details>
+<summary><b>Extra: AT commands</b> (click to open)</summary>
+
+AT commands change the module's settings. They only work when no phone is connected. Send them with the `sendCommand()` function from Step 2.
+
+| Command | What it does |
+|---|---|
+| `AT` | Test. Replies `OK`. |
+| `AT+ALL` | Show all settings |
+| `AT+NAME=MyDevice` | Change the name |
+| `AT+BAUD=0` | Set speed to 9600 (4 = 115200) |
+| `AT+SETTING=DEFAULT` | Factory reset |
+
+</details>
+
+<details>
+<summary><b>Extra: Connect from a web browser</b> (click to open)</summary>
+
+Chrome and Edge can talk to the module directly from a web page, including a p5.js sketch.
 
 ```js
 async function connect() {
@@ -209,75 +176,48 @@ async function connect() {
   const service = await server.getPrimaryService(0xffe0);
   const ch = await service.getCharacteristic(0xffe1);
 
-  // Receive
+  // Receive messages from the Arduino
   await ch.startNotifications();
   ch.addEventListener("characteristicvaluechanged", e => {
     console.log(new TextDecoder().decode(e.target.value));
   });
 
-  // Send
-  await ch.writeValue(new TextEncoder().encode("on"));
+  // Send "1" to the Arduino
+  await ch.writeValue(new TextEncoder().encode("1"));
 }
 ```
 
-Requirements:
+- Call `connect()` from a button click.
+- The page must run on `https://` or `localhost`.
+- Safari and Firefox don't support this.
 
-- `connect()` must run from a button click. Browsers block it otherwise.
-- The page must be served over `https://` or `localhost`.
-- Use Chrome or Edge. Safari and Firefox don't support Web Bluetooth.
+</details>
 
----
+<details>
+<summary><b>Extra: Upload code wirelessly</b> (click to open)</summary>
 
-## Step 6: Upload code wirelessly (Setup B)
+The NL-16 can upload sketches to the Uno over Bluetooth from an Android phone, using NULLLAB's [upload app](https://github.com/nulllaborg/arduino_ble_flash_demo).
 
-The NL-16 can upload sketches to the Uno over Bluetooth, with no USB cable.
-
-### 6.1 Requirements
-
-- Module baud rate: **115200** (the Uno bootloader requires it)
-- An Android phone
-- NULLLAB's upload app: [arduino_ble_flash_demo](https://github.com/nulllaborg/arduino_ble_flash_demo)
-
-### 6.2 Wiring
+This needs different wiring and the module set back to 115200 (`AT+BAUD=4`):
 
 | NL-16 | Uno |
 |---|---|
 | +5V | 5V |
 | GND | GND |
-| TXD | D0 (RX) |
-| RXD | D1 (TX) |
+| TXD | D0 |
+| RXD | D1 |
 | STAT/D-RST | RESET |
 
-> [!IMPORTANT]
-> Pins 0 and 1 are shared with USB. **Unplug the module's TXD/RXD wires before uploading over USB**, or the upload will fail.
-
-### 6.3 Upload
-
-1. In Arduino IDE: Sketch → Export Compiled Binary. This creates a `.hex` file in your sketch folder.
+1. In Arduino IDE: **Sketch → Export Compiled Binary** to create a `.hex` file.
 2. Copy the `.hex` file to your phone.
-3. Open the NULLLAB app, connect to the module, select the file, and upload.
+3. Open the app, connect to the module, select the file, and upload.
 
-In your sketch, use `Serial` (not SoftwareSerial) to talk to the module in this setup, at 115200.
+Unplug the TXD and RXD wires before uploading over USB, or the upload fails.
 
----
-
-
-## Troubleshooting
-
-| Problem | Fix |
-|---|---|
-| No `OK` after typing `AT` | Try baud 115200, then 9600. Check line ending is "Both NL & CR". Check TX/RX wiring for the setup you're using. |
-| AT commands stopped working | A device is connected. Disconnect it. |
-| Garbled text | Baud rates don't match, or SoftwareSerial is running too fast. Set the module to 9600. |
-| Phone can't find the module | Use a BLE app, not phone Settings. On Android, turn on Location. |
-| Connected but no data arrives | Check you're writing to `FFE1` as text, and that Notify is on. |
-| USB upload fails | Disconnect the module from pins 0 and 1. |
-| Messages cut off or missing | Keep messages under 64 bytes and wait 100 ms between them. |
+</details>
 
 ---
 
 ## References
 
 - [NULLLAB BLE-Uno docs](https://github.com/nulllaborg/ble-uno) (same chip and AT commands)
-- [Wireless upload app](https://github.com/nulllaborg/arduino_ble_flash_demo)
-- [Web Bluetooth API (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API)

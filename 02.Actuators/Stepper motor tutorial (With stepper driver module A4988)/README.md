@@ -9,6 +9,9 @@ The A4988 driver makes controlling the motor relatively simple. Instead of contr
 
 The motor should be powered using an **12V external power supply**, rather than directly from the Arduino.
 
+<img width="1136" height="524" alt="image" src="https://github.com/user-attachments/assets/042dcd2e-75c4-4b89-bbdb-8a70c13e01f2" />
+
+
 ## A4988 Stepper Driver Module
 
 The A4988 driver module connects the Arduino to the stepper motor.
@@ -54,72 +57,7 @@ The wiring is shown in the image below.
 
 ## Arduino Example Code
 
-The A4988 does not require an additional Arduino library.
-
-The Arduino controls the motor by sending pulses to the **STEP** pin.
-
-In this example, the motor rotates in one direction for 200 steps, waits for one second, and then rotates 200 steps in the opposite direction.
-
-```C++
-const int DIR_PIN = 2;
-const int STEP_PIN = 3;
-const int ENABLE_PIN = 4;
-
-// Number of steps to move
-const int STEPS = 200;
-
-void setup()
-{
-  // Set the driver pins as outputs
-  pinMode(DIR_PIN, OUTPUT);
-  pinMode(STEP_PIN, OUTPUT);
-  pinMode(ENABLE_PIN, OUTPUT);
-
-  // Enable the motor driver
-  digitalWrite(ENABLE_PIN, LOW);
-}
-
-void loop()
-{
-  // Set direction
-  digitalWrite(DIR_PIN, HIGH);
-
-  // Move 200 steps
-  for (int i = 0; i < STEPS; i++)
-  {
-    digitalWrite(STEP_PIN, HIGH);
-    delayMicroseconds(1000);
-
-    digitalWrite(STEP_PIN, LOW);
-    delayMicroseconds(1000);
-  }
-
-  delay(1000);
-
-  // Change direction
-  digitalWrite(DIR_PIN, LOW);
-
-  // Move 200 steps in the opposite direction
-  for (int i = 0; i < STEPS; i++)
-  {
-    digitalWrite(STEP_PIN, HIGH);
-    delayMicroseconds(1000);
-
-    digitalWrite(STEP_PIN, LOW);
-    delayMicroseconds(1000);
-  }
-
-  delay(1000);
-}
-```
-
-https://github.com/user-attachments/assets/04c3a805-a668-4761-b02a-6395c7d96e00
-
-For more advanced stepper motor control, you can use the **AccelStepper** library.
-
-Compared with manually generating STEP pulses, AccelStepper makes it easier to control speed, acceleration, direction, and position.
-
-Install the “AccelStepper” library inside the Arduino IDE (via “Tools” > “Manage Libraries…”).
+Install the **“AccelStepper”** library inside the Arduino IDE (via “Tools” > “Manage Libraries…”).
 
 The example below is based on the **ConstantSpeed** example. This code will run the stepper motor at a constant speed.
 
@@ -157,3 +95,32 @@ void loop()
   // Keep the motor rotating at a constant speed
   stepper.runSpeed();
 }
+
+```
+https://github.com/user-attachments/assets/04c3a805-a668-4761-b02a-6395c7d96e00
+
+## Basic AccelStepper Functions
+
+`setMaxSpeed(speed)` – Sets the maximum speed of the motor in steps per second.
+
+`setSpeed(speed)` – Sets the constant running speed in steps per second; a negative value reverses the direction.
+
+`setAcceleration(acceleration)` – Sets how quickly the motor speeds up or slows down.
+
+`moveTo(position)` – Sets a target absolute position for the motor.
+
+`move(distance)` – Moves the motor a certain number of steps relative to its current position.
+
+`run()` – Moves the motor toward the target position while applying acceleration and deceleration.
+
+`runSpeed()` – Runs the motor continuously at the speed set by `setSpeed()`.
+
+`runToPosition()` – Runs the motor until it reaches the target position.
+
+`stop()` – Tells the motor to decelerate and stop.
+
+`currentPosition()` – Returns the motor's current position in steps.
+
+`setCurrentPosition(position)` – Manually sets the motor's current position.
+
+`distanceToGo()` – Returns the number of steps remaining before reaching the target position.

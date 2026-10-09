@@ -13,6 +13,8 @@ The driver board is necessary because the Arduino cannot safely provide enough c
 ## 28BYJ-48 Stepper Motor and Driver Board
 
 The 28BYJ-48 is a **5-wire unipolar stepper motor**.
+<img width="922" height="702" alt="image" src="https://github.com/user-attachments/assets/e1e8eb6c-aafc-473a-9d92-3739f96aabcd" />
+
 
 Instead of connecting the motor directly to the Arduino, the motor plugs into the connector on the driver board.
 

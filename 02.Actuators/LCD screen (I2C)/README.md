@@ -18,11 +18,11 @@ On an Arduino Uno, the I2C pins are: SDA → A4, SCL → A5
 
 ## Installing the LCD Library
 
-Before using the LCD, you need to install the LiquidCrystal I2C library.
+Before using the LCD, you need to install the **LiquidCrystal I2C by Frank de Brabander** library.
 
 In the Arduino IDE, go to: Sketch > Include Library > Manage Libraries...
 
-Search for: LiquidCrystal I2C
+Search for: **LiquidCrystal I2C by Frank de Brabander**
 
 and install the library.
 

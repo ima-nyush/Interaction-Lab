@@ -43,7 +43,7 @@ The wiring is shown in the image below.
 
 Install the **“AccelStepper”** library by Mike McCauley inside the Arduino IDE (via “Tools” > “Manage Libraries…”).
 
-[**Arduino Example Codes**](https://github.com/ima-nyush/Interaction-Lab/tree/03ae6ac81cc2111a9086ece07198315e5930f280/02.Actuators/Stepper%20NEMA%2017%20%2B%20A4988%20Driver/Tutorial%20Sketches)
+[**NEMA 17 Stepper Example Codes**](https://github.com/ima-nyush/Interaction-Lab/tree/03ae6ac81cc2111a9086ece07198315e5930f280/02.Actuators/Stepper%20NEMA%2017%20%2B%20A4988%20Driver/Tutorial%20Sketches)
 
 IxLab examples codes for stepper motors based on by Mike McCauley's AccelStepper library
 

@@ -38,7 +38,7 @@ If you use an external power supply, make sure its **GND is connected to the Ard
 
 Install the **“AccelStepper”** library by Mike McCauley inside the Arduino IDE (via “Tools” > “Manage Libraries…”).
 
-[**Arduino Example Codes**](https://github.com/ima-nyush/Interaction-Lab/tree/03ae6ac81cc2111a9086ece07198315e5930f280/02.Actuators/Stepper%20NEMA%2017%20%2B%20A4988%20Driver/Tutorial%20Sketches)
+[**28BYJ-48 Stepper Example Codes**](https://github.com/ima-nyush/Interaction-Lab/tree/25ed0ac0f5635a3fc33109607a194aa7c0b5f8c2/02.Actuators/Stepper%2028BYJ-48%20%2B%20Driver/28BYJ-48%20Tutorial%20Sketches)
 
 IxLab examples codes for stepper motors based on by Mike McCauley's AccelStepper library
 

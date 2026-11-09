@@ -1,13 +1,8 @@
 # Stepper motor tutorial (With stepper driver module A4988)
 
-In this tutorial, we will use a **bipolar stepper motor** with an **A4988 stepper motor driver module**.
+In this tutorial, we will use a **NEMA 17 stepper motor** with an **A4988 driver module**.
 
-The A4988 driver makes controlling the motor relatively simple. Instead of controlling each motor coil directly, the Arduino only needs to send two main signals:
-
-- **STEP** – moves the motor one step
-- **DIR** – controls the direction of rotation
-
-The motor should be powered using an **12V external power supply**, rather than directly from the Arduino.
+The motor should be powered using an **12V external power supply**.
 
 <img width="1136" height="524" alt="image" src="https://github.com/user-attachments/assets/042dcd2e-75c4-4b89-bbdb-8a70c13e01f2" />
 
@@ -16,21 +11,12 @@ The motor should be powered using an **12V external power supply**, rather than 
 
 The A4988 driver module connects the Arduino to the stepper motor.
 
-The most important connections are:
-
+These are the key pins that control the behavior of the stepper motor:
 - **STEP** – each pulse moves the motor one step
 - **DIR** – determines the rotation direction
 - **EN** – enables or disables the motor driver
-- **5V** – logic power from the Arduino
-- **GND** – ground
-- **VIN** – external motor power supply
-- **1A, 1B, 2A, 2B** – connections to the two motor coils
-
-The stepper motor is connected directly to the motor output connector on the driver module.
 
 ## Wiring the Stepper Motor to an Arduino
-
-In this example, connect the driver module to the Arduino as follows:
 
 | A4988 Driver | Arduino Uno |
 | --- | --- |
@@ -51,53 +37,26 @@ The wiring is shown in the image below.
 
 <img width="920" height="1272" alt="image" src="https://github.com/user-attachments/assets/fd730aeb-8d0a-4059-8f66-57c466d29969" />
 
-> **Important:** Do not power the stepper motor directly from the Arduino 5V pin. Use an external power supply suitable for your motor.
-
 > Avoid connecting or disconnecting the stepper motor while the driver is powered.
 
 ## Arduino Example Code
 
-Install the **“AccelStepper”** library inside the Arduino IDE (via “Tools” > “Manage Libraries…”).
+Install the **“AccelStepper”** library by Mike McCauley inside the Arduino IDE (via “Tools” > “Manage Libraries…”).
 
-The example below is based on the **ConstantSpeed** example. This code will run the stepper motor at a constant speed.
 
-```C++
-#include <AccelStepper.h>
+**AccelStepper examples**
+IxLab examples codes for stepper motors based on by Mike McCauley's AccelStepper library (mikem@airspayce.com)
 
-int DIR_PIN = 2;
-int STEP_PIN = 3;
-int EN_PIN = 4;
 
-// Define a stepper motor using a driver
-// AccelStepper::DRIVER means the driver uses
-// STEP and DIR pins
-AccelStepper stepper(
-  AccelStepper::DRIVER,
-  STEP_PIN,
-  DIR_PIN
-);
+- Constant speed example: Shows how to run AccelStepper in the simplest, fixed speed mode with no accelerations.
+- Run to position example: Shows how to use runToNewPosition which sets a new target position and then waits until the stepper has achieved it.
+- Bounce example: Make a single stepper bounce from one limit to another.
+- Knob stepper example: Make a single stepper follow the analog value read from a pot or whatever. The stepper will move at a constant speed to each newly set posiiton, depending on the value of the pot.
+- Multi stepper example: Shows how to use multiple simultaneous steppers.
+- Random example: Make a single stepper perform random changes in speed, position and acceleration.
+  
+Additional documenttion: https://www.airspayce.com/mikem/arduino/AccelStepper/index.html
 
-void setup()
-{
-  // Enable the stepper driver
-  pinMode(EN_PIN, OUTPUT);
-  digitalWrite(EN_PIN, LOW);
-
-  // Set the maximum allowed speed
-  stepper.setMaxSpeed(1000);
-
-  // Set the constant running speed
-  stepper.setSpeed(500);
-}
-
-void loop()
-{
-  // Keep the motor rotating at a constant speed
-  stepper.runSpeed();
-}
-
-```
-https://github.com/user-attachments/assets/04c3a805-a668-4761-b02a-6395c7d96e00
 
 ## Basic AccelStepper Functions
 

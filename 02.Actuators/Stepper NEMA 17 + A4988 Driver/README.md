@@ -39,15 +39,14 @@ The wiring is shown in the image below.
 
 > Avoid connecting or disconnecting the stepper motor while the driver is powered.
 
-## Arduino Example Code
+## Library & Arduino Example Codes
 
 Install the **“AccelStepper”** library by Mike McCauley inside the Arduino IDE (via “Tools” > “Manage Libraries…”).
 
+[**Arduino Example Codes**]([https://example.com](https://github.com/ima-nyush/Interaction-Lab/tree/03ae6ac81cc2111a9086ece07198315e5930f280/02.Actuators/Stepper%20NEMA%2017%20%2B%20A4988%20Driver/Tutorial%20Sketches))
+IxLab examples codes for stepper motors based on by Mike McCauley's AccelStepper library
 
-**AccelStepper examples**
-IxLab examples codes for stepper motors based on by Mike McCauley's AccelStepper library (mikem@airspayce.com)
 
-Tutorial Sketches: https://github.com/ima-nyush/Interaction-Lab/tree/03ae6ac81cc2111a9086ece07198315e5930f280/02.Actuators/Stepper%20NEMA%2017%20%2B%20A4988%20Driver/Tutorial%20Sketches
 
 - Constant speed example: Shows how to run AccelStepper in the simplest, fixed speed mode with no accelerations.
 - Run to position example: Shows how to use runToNewPosition which sets a new target position and then waits until the stepper has achieved it.
